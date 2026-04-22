@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr" class="scroll-smooth w-full overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="NutriBug - FAQ. Your questions about our premium insect-based protein, answered.">
+    <title>FAQ | NutriBug</title>
+    
+    <link rel="icon" href="Images\WhatsApp Image 2026-04-21 at 11.25.12.jpeg" type="image/jpeg">
+    
+    <script src="tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#F6AD55',   // Honey Yellow
+                        secondary: '#E6D3A3', // Warm Sand
+                        base: '#1A1A1A',      // Rich Black
+                        cream: '#FFFFFF',     // Pure White
+                        warmgray: '#9CA3AF',
+                        charcoal: '#1A1A1A',  // Rich Black
+                        'card-dark': '#2A2A2A'// Dark Card
+                    },
+                    animation: {
+                        'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            'from': { opacity: '0', transform: 'translateY(40px)' },
+                            'to': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-color: #F6AD55; 
+            --secondary-color: #E6D3A3; 
+            --bg-color: #FFFFFF; 
+            --bg-alt: #F3F4F6; 
+            --card-bg: #FFFFFF;    
+            --text-main: #1A1A1A; 
+            --text-heading: #1A1A1A; 
+            --navbar-bg: #FFFFFF; 
+            --nav-text: #1A1A1A;
+            --border-color: #E5E7EB; 
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #F6AD55;   
+            --secondary-color: #E6D3A3; 
+            --bg-color: #1A1A1A;        
+            --bg-alt: #222222;          
+            --card-bg: #2A2A2A;         
+            --text-main: #FFFFFF;       
+            --text-heading: #FFFFFF;    
+            --navbar-bg: #1A1A1A;       
+            --nav-text: #FFFFFF;
+            --border-color: #333333;    
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body { 
+            overflow-x: hidden !important; 
+            width: 100%; 
+            max-width: 100vw;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
+        p, label { color: var(--text-main); }
+        
+        .bg-theme-main { background-color: var(--bg-color); }
+        .bg-theme-alt { background-color: var(--bg-alt); }
+        .bg-card-theme { background-color: var(--card-bg); }
+        
+        .text-heading-theme { color: var(--text-heading); }
+        .text-body-theme { color: var(--text-main); }
+        .border-theme { border-color: var(--border-color); }
+        
+        /* Navbar Styles */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--nav-text); 
+            padding: 8px 10px; 
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+        
+        .nav-link:hover { color: var(--primary-color); }
+        .nav-link.active { color: var(--primary-color); font-weight: 600; }
+        
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg); 
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            min-width: 160px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        #dashboard-dropdown .dropdown-menu { left: auto; right: 0; }
+
+        .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block; padding: 12px 20px; color: var(--nav-text); 
+            transition: all 0.3s ease; border-bottom: 1px solid var(--border-color); font-size: 0.9rem;
+            text-decoration: none;
+        }
+        .dropdown-item:hover { background-color: rgba(246, 173, 85, 0.1); color: var(--primary-color); padding-left: 25px; }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        
+        .mobile-menu {
+            transform: translateX(-100%); transition: transform 0.3s ease;
+            background-color: var(--navbar-bg); color: var(--text-heading); 
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        
+        .mobile-dropdown-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            padding-left: 20px; background-color: rgba(255,255,255,0.05); border-radius: 8px;
+        }
+        .mobile-dropdown-content a { color: var(--text-main); text-decoration: none;} 
+        .mobile-dropdown-content a:hover { color: var(--primary-color); }
+        .mobile-dropdown-content.active { max-height: 500px; margin: 5px 0; }
+        
+        @media (max-width: 1279px) {
+            .desktop-nav, .navbar-right-desktop { display: none !important; }
+            .mobile-menu-button { display: flex !important; }
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav, .navbar-right-desktop { display: flex !important; }
+            .mobile-menu-button { display: none !important; }
+        }
+
+        .animate-fadeInUp { opacity: 0; }
+
+        /* FAQ Accordion Styles */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease;
+        }
+        .faq-btn.active .faq-icon {
+            transform: rotate(45deg);
+            color: var(--primary-color);
+        }
+        .faq-btn.active {
+            border-bottom-color: transparent;
+        }
+    </style>
+</head>
+<body class="w-full overflow-x-hidden m-0 p-0 antialiased bg-theme-main text-body-theme">
+
+    <div class="relative w-full max-w-[1920px] mx-auto overflow-x-hidden flex flex-col min-h-screen">
+        
+        <nav id="navbar" class="navbar-container fixed top-0 inset-x-0 z-[1000]">
+            <div class="container mx-auto px-4 w-full">
+                <div class="flex items-center justify-between">
+                    
+                    <a href="index.html" class="flex items-center gap-3 no-underline transition-transform duration-300 hover:scale-105 group">
+                        <div class="relative w-10 h-10 bg-black rounded-lg flex items-center justify-center shrink-0 border-2 border-primary overflow-hidden">
+                            <i class="fas fa-bug text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <div class="text-xl md:text-2xl font-black text-heading-theme tracking-tight">Nutri<span class="text-primary">Bug</span></div>
+                        </div>
+                    </a>
+                    
+                    <div class="desktop-nav items-center space-x-0 xl:space-x-1 hidden xl:flex">
+                        <div class="dropdown" id="home-dropdown">
+                            <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">
+                                Home <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </div>
+                            <div class="dropdown-menu">
+                                <a href="index.html" class="dropdown-item">Home 1</a>
+                                <a href="home-2.html" class="dropdown-item">Home 2</a>
+                            </div>
+                        </div>
+                        <a href="about.html" class="nav-link">About</a>
+                        <a href="products.html" class="nav-link">Products</a>
+                        <a href="sustainability.html" class="nav-link">Sustainability</a>
+                        <a href="wholesale.html" class="nav-link">Wholesale</a>
+                        <a href="pricing.html" class="nav-link">Pricing</a>
+                        <a href="faq.html" class="nav-link active">FAQ</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </div>
+                    
+                    <div class="navbar-right-desktop flex items-center gap-2 lg:gap-3 shrink-0">
+                        <button class="w-10 h-10 bg-theme-alt text-heading-theme border border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-theme-toggle-btn" title="Toggle Dark Mode">
+                            <i class="fas fa-moon" id="desktop-theme-icon"></i>
+                        </button>
+                        <button class="w-10 h-10 bg-theme-alt text-heading-theme border border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-rtl-toggle-btn" title="Toggle RTL">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                        
+                        <a href="login.html" class="h-10 bg-transparent border border-theme text-heading-theme px-5 rounded-lg font-bold text-sm transition-all hover:bg-primary hover:text-base hover:border-primary shadow-sm flex items-center justify-center gap-2 shrink-0 no-underline box-border">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a href="register.html" class="h-10 bg-primary text-white px-5 rounded-lg font-bold text-sm transition-all hover:bg-white hover:text-primary shadow-lg hover:shadow-xl flex items-center justify-center gap-2 shrink-0 border-2 border-transparent hover:border-primary no-underline box-border">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </div>
+                    
+                    <button id="mobile-menu-btn" class="hidden text-heading-theme cursor-pointer bg-transparent border-0 mobile-menu-button items-center justify-center h-10 w-10 group relative hover:text-primary transition-colors">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[9999] overflow-y-auto">
+            <div class="p-4 sm:p-6">
+                <div class="flex flex-wrap justify-between items-center mb-8 gap-3">
+                    <a href="index.html" class="flex items-center gap-2 no-underline">
+                        <div class="relative w-10 h-10 bg-black rounded-lg flex items-center justify-center shrink-0 border-2 border-primary overflow-hidden">
+                            <i class="fas fa-bug text-white"></i>
+                        </div>
+                        <div>
+                            <div class="text-lg md:text-2xl font-black text-heading-theme tracking-tight">Nutri<span class="text-primary">Bug</span></div>
+                        </div>
+                    </a>
+                    
+                    <div class="flex items-center bg-card-theme rounded-lg px-2 py-1 shadow-md border border-theme">
+                        <button id="mobile-theme-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
+                            <i class="fas fa-moon" id="mobile-theme-icon"></i>
+                        </button>
+                        <button id="mobile-rtl-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                        <button id="close-mobile-menu" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-xl sm:text-2xl transition-transform active:scale-90 border-0 cursor-pointer bg-transparent hover:text-primary">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="space-y-1">
+                    <div>
+                        <button id="mobile-home-btn" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline cursor-pointer border-0 bg-transparent hover:text-primary transition-colors" onclick="toggleMobileDropdown('home-mobile')">
+                            <span>Home</span>
+                            <i class="fas fa-chevron-down dropdown-arrow text-warmgray"></i>
+                        </button>
+                        <div id="home-mobile" class="mobile-dropdown-content">
+                            <a href="index.html" class="block py-2.5">Home 1</a>
+                            <a href="home-2.html" class="block py-2.5">Home 2</a>
+                        </div>
+                    </div>
+                    
+                    <a href="about.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>About</span></a>
+                    <a href="products.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Products</span></a>
+                    <a href="sustainability.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Sustainability</span></a>
+                    <a href="wholesale.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Wholesale</span></a>
+                    <a href="pricing.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Pricing</span></a>
+                    <a href="faq.html" class="flex items-center justify-between w-full text-primary font-bold text-lg py-3 px-2 no-underline border-b border-theme transition-colors"><span>FAQ</span></a>
+                    <a href="contact.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Contact</span></a>
+                    
+                    <div class="mt-8 pt-6 border-t border-theme space-y-3">
+                        <a href="login.html" class="bg-transparent border border-theme text-heading-theme w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-primary hover:text-base hover:border-primary flex items-center justify-center gap-2 no-underline">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a href="register.html" class="bg-primary text-white w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-white hover:text-primary flex items-center justify-center gap-2 shadow-lg no-underline border-2 border-transparent hover:border-primary">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="w-full flex-grow">
+            
+           <section class="min-h-[100dvh] w-full pt-[70px] bg-base relative overflow-hidden flex items-center justify-center text-center border-b border-white/10 box-border">
+    <div class="absolute inset-0 z-0">
+        <img src="Images/The Cost of Fuel.jpg" alt="Data Network" class="w-full h-full object-cover object-center filter contrast-125 opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-base via-base/50 to-transparent"></div>
+    </div>
+
+    <div class="container mx-auto px-4 max-w-4xl relative z-10 py-8 sm:py-12 md:py-16 flex flex-col items-center justify-center">
+        <span class="animate-fadeInUp text-primary font-black uppercase tracking-widest text-xs sm:text-sm mb-4 md:mb-6 border-b-2 border-primary pb-2 inline-block" style="animation-delay: 0.1s;">Intelligence Base</span>
+        
+        <h1 class="animate-fadeInUp text-4xl sm:text-5xl md:text-7xl font-black text-white mb-4 md:mb-6 leading-[1.05] tracking-tight" style="animation-delay: 0.2s;">
+            Uncover the <br>
+            <span class="text-primary">Architecture.</span>
+        </h1>
+        
+        <p class="animate-fadeInUp text-base sm:text-lg md:text-xl text-gray-400 font-medium leading-relaxed mb-8 md:mb-10 max-w-2xl" style="animation-delay: 0.3s;">
+            Clear, uncompromising answers about our matrix, our science, and how we handle global logistics.
+        </p>
+        
+        <div class="animate-fadeInUp w-full max-w-lg relative" style="animation-delay: 0.4s;">
+            <input type="text" placeholder="Search the knowledge base..." class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-2xl px-6 py-4 pl-12 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium">
+            <i class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+        </div>
+    </div>
+</section>
+
+            <section class="py-16 bg-theme-main relative z-20 -mt-10">
+                <div class="container mx-auto px-4 max-w-7xl">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        
+                        <a href="#science" class="bg-card-theme border border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
+                            <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3 class="text-lg font-black text-heading-theme mb-2">Science & Safety</h3>
+                            <p class="text-body-theme text-xs font-medium">Sourcing, allergies, and bio-availability.</p>
+                        </a>
+
+                        <a href="#product" class="bg-card-theme border border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
+                            <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-jar"></i>
+                            </div>
+                            <h3 class="text-lg font-black text-heading-theme mb-2">Product Anatomy</h3>
+                            <p class="text-body-theme text-xs font-medium">Flavors, mixing, and consumption guides.</p>
+                        </a>
+
+                        <a href="#logistics" class="bg-card-theme border border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
+                            <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-truck-fast"></i>
+                            </div>
+                            <h3 class="text-lg font-black text-heading-theme mb-2">Logistics</h3>
+                            <p class="text-body-theme text-xs font-medium">Shipping zones, tracking, and returns.</p>
+                        </a>
+
+                        <a href="#subscriptions" class="bg-card-theme border border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
+                            <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h3 class="text-lg font-black text-heading-theme mb-2">Subscriptions</h3>
+                            <p class="text-body-theme text-xs font-medium">Managing your monthly loadout and billing.</p>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="science" class="py-24 bg-theme-alt relative border-t border-theme">
+                <div class="container mx-auto px-4 max-w-4xl">
+                    <div class="text-center mb-12">
+                        <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">Protocol 01</span>
+                        <h2 class="text-3xl md:text-5xl font-black text-heading-theme">Science & Safety</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                            <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                <span class="text-lg font-black text-heading-theme group-hover:text-primary transition-colors">Is it safe to consume insect protein?</span>
+                                <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-content bg-theme-alt/50 border-t border-theme">
+                                <p class="p-8 text-body-theme font-medium leading-relaxed">
+                                    Absolutely. Our crickets are farmed in sterile, vertical biomes specifically designed for human consumption. They are fed an organic, pre-consumer plant diet and are completely free of antibiotics and heavy metals often found in traditional meat and fish.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                            <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                <span class="text-lg font-black text-heading-theme group-hover:text-primary transition-colors">Are there any allergy concerns?</span>
+                                <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-content bg-theme-alt/50 border-t border-theme">
+                                <p class="p-8 text-body-theme font-medium leading-relaxed">
+                                    Yes. People with an allergy to crustacean shellfish (such as shrimp, crab, or lobster) may also be allergic to crickets. If you have a shellfish allergy, we strongly advise consulting your physician before integrating NutriBug into your loadout.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                            <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                <span class="text-lg font-black text-heading-theme group-hover:text-primary transition-colors">How does the amino profile compare to whey?</span>
+                                <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-content bg-theme-alt/50 border-t border-theme">
+                                <p class="p-8 text-body-theme font-medium leading-relaxed">
+                                    The NutriBug Matrix contains all 9 essential amino acids in quantities that rival or exceed premium whey isolates. Furthermore, it boasts superior bio-availability (PDCAAS of 0.98), meaning your body actually absorbs and utilizes the protein faster and more efficiently.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="product" class="py-24 bg-[#111111] relative border-y border-white/10 overflow-hidden">
+                <div class="absolute right-0 top-0 w-1/3 h-full bg-primary/5 blur-[120px] pointer-events-none"></div>
+                <div class="container mx-auto px-4 max-w-7xl relative z-10">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        
+                        <div class="relative h-[600px] rounded-[3rem] overflow-hidden hidden lg:block border border-white/10">
+                            <img src="Images/powder.jpg" alt="Product Preparation" class="w-full h-full object-cover filter contrast-125 opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#111111] to-transparent"></div>
+                            <div class="absolute bottom-10 left-10">
+                                <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">Protocol 02</span>
+                                <h2 class="text-4xl font-black text-white">Product Anatomy</h2>
+                            </div>
+                        </div>
+
+                        <div class="w-full">
+                            <div class="lg:hidden mb-10 text-center">
+                                <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">Protocol 02</span>
+                                <h2 class="text-3xl md:text-5xl font-black text-white">Product Anatomy</h2>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="bg-[#1A1A1A] border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+                                    <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                        <span class="text-lg font-black text-white group-hover:text-primary transition-colors">Does it taste like bugs?</span>
+                                        <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
+                                    </button>
+                                    <div class="faq-content bg-[#111111]">
+                                        <p class="p-8 text-gray-300 font-medium leading-relaxed border-t border-white/10">
+                                            Not at all. Our proprietary micro-milling process neutralizes any earthy notes. The raw powder has a very mild, slightly nutty flavor, while our flavored matrices (like Dark Cocoa) taste exactly like a premium, rich milkshake.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-[#1A1A1A] border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+                                    <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                        <span class="text-lg font-black text-white group-hover:text-primary transition-colors">How well does the powder mix?</span>
+                                        <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
+                                    </button>
+                                    <div class="faq-content bg-[#111111]">
+                                        <p class="p-8 text-gray-300 font-medium leading-relaxed border-t border-white/10">
+                                            Perfectly. We mill the protein to 15 microns. Whether you use a standard shaker bottle or an electronic blender, the matrix dissolves smoothly into water or plant milk without chalky clumps or grit.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-[#1A1A1A] border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+                                    <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                        <span class="text-lg font-black text-white group-hover:text-primary transition-colors">Can I bake with Matrix Isolate?</span>
+                                        <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
+                                    </button>
+                                    <div class="faq-content bg-[#111111]">
+                                        <p class="p-8 text-gray-300 font-medium leading-relaxed border-t border-white/10">
+                                            Yes. It is highly heat-stable. It can be used to fortify pancakes, oatmeal, or homemade energy bars without losing its amino integrity or altering the moisture content drastically.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="logistics" class="py-24 bg-theme-main relative">
+                <div class="container mx-auto px-4 max-w-7xl">
+                    <div class="text-center mb-16">
+                        <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">Protocol 03</span>
+                        <h2 class="text-4xl md:text-5xl font-black text-heading-theme">Logistics & Subscriptions</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                        
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-black text-heading-theme mb-6 border-b border-theme pb-2">Shipping & Returns</h3>
+                            
+                            <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                                <button class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                    <span class="text-base font-black text-heading-theme group-hover:text-primary transition-colors">Where do you ship?</span>
+                                    <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content bg-theme-alt/50 border-t border-theme">
+                                    <p class="p-6 text-body-theme text-sm font-medium leading-relaxed">
+                                        We currently ship to all 50 US States, Canada, and select regions in the EU and UK. International shipping times vary from 5-14 business days depending on customs.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                                <button class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                    <span class="text-base font-black text-heading-theme group-hover:text-primary transition-colors">What is your return policy?</span>
+                                    <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content bg-theme-alt/50 border-t border-theme">
+                                    <p class="p-6 text-body-theme text-sm font-medium leading-relaxed">
+                                        We offer a 30-Day Performance Guarantee on your first order. If you aren't satisfied, contact support for a full refund. For subsequent orders, we only accept returns on unopened products within 30 days.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="subscriptions" class="space-y-4 mt-8 lg:mt-0">
+                            <h3 class="text-2xl font-black text-heading-theme mb-6 border-b border-theme pb-2">Hive Subscriptions</h3>
+                            
+                            <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                                <button class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                    <span class="text-base font-black text-heading-theme group-hover:text-primary transition-colors">Can I pause or cancel my plan?</span>
+                                    <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content bg-theme-alt/50 border-t border-theme">
+                                    <p class="p-6 text-body-theme text-sm font-medium leading-relaxed">
+                                        Yes. There are no trap-doors. You can pause, skip a delivery, or cancel your subscription entirely at any time directly through your user dashboard.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                                <button class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
+                                    <span class="text-base font-black text-heading-theme group-hover:text-primary transition-colors">How do I change my flavors?</span>
+                                    <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content bg-theme-alt/50 border-t border-theme">
+                                    <p class="p-6 text-body-theme text-sm font-medium leading-relaxed">
+                                        Log into your account and navigate to "Manage Subscriptions." You can swap out flavors or change product types up to 48 hours before your next scheduled billing date.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-24 bg-primary relative text-center border-t border-theme">
+                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at center, #1A1A1A 1px, transparent 1px); background-size: 20px 20px;"></div>
+                
+                <div class="container mx-auto px-4 max-w-3xl relative z-10">
+                    <div class="w-20 h-20 mx-auto bg-base rounded-2xl flex items-center justify-center text-primary text-3xl mb-8 shadow-xl transform rotate-3">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black text-base mb-6">System Overload?</h2>
+                    <p class="text-[#333333] text-lg font-bold mb-10">
+                        If your question wasn't answered in the matrix above, patch through to our support team. We generally respond within 2-4 operational hours.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="contact.html" class="inline-flex items-center justify-center bg-base text-white px-10 py-4 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-white hover:text-base transition-all shadow-xl no-underline border-2 border-base">
+                            Contact Support
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center bg-transparent text-base border-2 border-base px-10 py-4 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-base hover:text-white transition-all no-underline">
+                            Live Chat
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="bg-[#111111] py-12 md:py-16 shrink-0 relative border-t border-white/10">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+                    <div class="text-center sm:text-left">
+                        <a href="index.html" class="flex items-center justify-center sm:justify-start gap-3 mb-6 no-underline">
+                            <div class="relative w-10 h-10 bg-black rounded-lg flex items-center justify-center shrink-0 border-2 border-primary overflow-hidden">
+                                <i class="fas fa-bug text-white"></i>
+                            </div>
+                            <div>
+                                <span class="text-xl md:text-2xl font-bold text-white block">Nutri<span class="text-primary">Bug</span></span>
+                            </div>
+                        </a>
+                        <p class="text-gray-400 mb-6 font-medium text-sm">The future of protein is here. Sustainable, nutritious, and delicious insect-based products to forge your legacy.</p>
+                        <div class="flex justify-center sm:justify-start space-x-3 sm:space-x-4">
+                            <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary transition shadow-sm"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary transition shadow-sm"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary transition shadow-sm"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary transition shadow-sm"><i class="fas fa-music"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-bold mb-6 text-white">Shop</h3>
+                        <ul class="space-y-4 text-base">
+                            <li><a href="products.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Protein Powders</a></li>
+                            <li><a href="products.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Energy Bars</a></li>
+                            <li><a href="products.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Amino Snacks</a></li>
+                            <li><a href="merch.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Merch & Gear</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-bold mb-6 text-white">Platform</h3>
+                        <ul class="space-y-4 text-base">
+                            <li><a href="about.html" class="text-gray-400 hover:text-white transition font-medium no-underline">About Us</a></li>
+                            <li><a href="sustainability.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Sustainability Impact</a></li>
+                            <li><a href="pricing.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Pricing & Subs</a></li>
+                            <li><a href="faq.html" class="text-gray-400 hover:text-white transition font-medium no-underline">FAQ & Support</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-bold mb-4 text-white">Newsletter</h3>
+                        <p class="text-gray-400 mb-6 text-base font-medium leading-relaxed">Subscribe for recipe updates, fitness tips, and exclusive drops.</p>
+                        <form class="flex flex-col gap-3">
+                            <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary font-medium shadow-sm text-center sm:text-left" required>
+                            <button type="submit" class="w-full bg-primary text-white px-4 py-3 rounded-lg font-bold hover:bg-white hover:text-primary transition shadow-sm">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm font-medium relative text-center sm:text-left">
+                    <p class="mb-4 md:mb-0 text-gray-400">© 2026 NutriBug. Built for the Future.</p>
+                    <div class="flex justify-center sm:justify-end gap-6 w-full md:w-auto">
+                        <a href="privacy.html" class="text-gray-400 hover:text-white transition no-underline">Privacy Policy</a>
+                        <a href="terms.html" class="text-gray-400 hover:text-white transition no-underline">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <button id="scroll-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-primary text-white rounded-full shadow-lg hidden hover:bg-white hover:text-primary transition z-50 border-2 border-transparent hover:border-primary">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // --- THEME & RTL LOGIC ---
+        const desktopThemeToggleBtn = document.getElementById('desktop-theme-toggle-btn');
+        const desktopThemeIcon = document.getElementById('desktop-theme-icon');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        const htmlElement = document.documentElement;
+        const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        
+        // Initialize Theme - Defaults to Dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            if (desktopThemeIcon) desktopThemeIcon.className = 'fas fa-sun';
+            if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-sun';
+        }
+
+        function toggleTheme() {
+            const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            if (desktopThemeIcon) desktopThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (mobileThemeIcon) mobileThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            
+            window.dispatchEvent(new Event('resize'));
+        }
+
+        if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // Desktop RTL Toggle
+        const currentDir = localStorage.getItem('direction') || 'ltr';
+        htmlElement.setAttribute('dir', currentDir);
+        
+        function toggleRTL() {
+            const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', direction);
+            localStorage.setItem('direction', direction);
+        }
+        if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);
+        if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+
+        // --- DROPDOWNS & MENU ---
+        function toggleDesktopDropdown(id) {
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if(d.id !== id) d.classList.remove('active');
+            });
+            document.getElementById(id).classList.toggle('active');
+        }
+        
+        function toggleMobileDropdown(id) {
+            document.getElementById(id).classList.toggle('active');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+        }
+        if(closeMobileMenu) {
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        }
+
+        // --- SMOOTH SCROLL & OFFSET ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    mobileMenu.classList.remove('active'); 
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70, 
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // --- SCROLL TOP BUTTON ---
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('hidden', window.scrollY <= 300);
+        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        
+        window.addEventListener('resize', () => {
+            if(window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+        });
+
+        // --- FAQ ACCORDION LOGIC ---
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            
+            // Toggle active class on button for styling (e.g. icon rotation)
+            button.classList.toggle('active');
+            
+            if (content.style.maxHeight) {
+                // If open, close it
+                content.style.maxHeight = null;
+            } else {
+                // If closed, open it
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+    </script>
+</body>
+</html>

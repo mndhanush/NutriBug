@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr" class="scroll-smooth w-full overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="NutriBug - About Us. Discover the origins of premium insect-based protein.">
+    <title>About Us | NutriBug</title>
+    
+     <link rel="icon" href="Images\WhatsApp Image 2026-04-21 at 11.25.12.jpeg" type="image/jpeg">
+    
+    <script src="tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#F6AD55',   // Honey Yellow
+                        secondary: '#E6D3A3', // Warm Sand
+                        base: '#1A1A1A',      // Rich Black
+                        cream: '#FFFFFF',     // Pure White
+                        warmgray: '#9CA3AF',
+                        charcoal: '#1A1A1A',  // Rich Black
+                        'card-dark': '#2A2A2A'// Dark Card
+                    },
+                    animation: {
+                        'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
+                        'fadeInSlow': 'fadeIn 1.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            'from': { opacity: '0', transform: 'translateY(40px)' },
+                            'to': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            'from': { opacity: '0' },
+                            'to': { opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-color: #F6AD55; 
+            --secondary-color: #E6D3A3; 
+            --bg-color: #FFFFFF; 
+            --bg-alt: #F3F4F6; 
+            --card-bg: #FFFFFF;    
+            --text-main: #1A1A1A; 
+            --text-heading: #1A1A1A; 
+            --navbar-bg: #FFFFFF; 
+            --nav-text: #1A1A1A;
+            --border-color: #E5E7EB; 
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #F6AD55;   
+            --secondary-color: #E6D3A3; 
+            --bg-color: #1A1A1A;        
+            --bg-alt: #222222;          
+            --card-bg: #2A2A2A;         
+            --text-main: #FFFFFF;       
+            --text-heading: #FFFFFF;    
+            --navbar-bg: #1A1A1A;       
+            --nav-text: #FFFFFF;
+            --border-color: #333333;    
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body { 
+            overflow-x: hidden !important; 
+            width: 100%; 
+            max-width: 100vw;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
+        p, label { color: var(--text-main); }
+        
+        .bg-theme-main { background-color: var(--bg-color); }
+        .bg-theme-alt { background-color: var(--bg-alt); }
+        .bg-card-theme { background-color: var(--card-bg); }
+        
+        .text-heading-theme { color: var(--text-heading); }
+        .text-body-theme { color: var(--text-main); }
+        .border-theme { border-color: var(--border-color); }
+        
+        /* Navbar Styles */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--nav-text); 
+            padding: 8px 10px; 
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+        
+        .nav-link:hover { color: var(--primary-color); }
+        .nav-link.active { color: var(--primary-color); font-weight: 600; }
+        
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg); 
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            min-width: 160px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        #dashboard-dropdown .dropdown-menu { left: auto; right: 0; }
+
+        .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block; padding: 12px 20px; color: var(--nav-text); 
+            transition: all 0.3s ease; border-bottom: 1px solid var(--border-color); font-size: 0.9rem;
+            text-decoration: none;
+        }
+        .dropdown-item:hover { background-color: rgba(246, 173, 85, 0.1); color: var(--primary-color); padding-left: 25px; }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        
+        .mobile-menu {
+            transform: translateX(-100%); transition: transform 0.3s ease;
+            background-color: var(--navbar-bg); color: var(--text-heading); 
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        
+        .mobile-dropdown-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            padding-left: 20px; background-color: rgba(255,255,255,0.05); border-radius: 8px;
+        }
+        .mobile-dropdown-content a { color: var(--text-main); text-decoration: none;} 
+        .mobile-dropdown-content a:hover { color: var(--primary-color); }
+        .mobile-dropdown-content.active { max-height: 500px; margin: 5px 0; }
+        
+        @media (max-width: 1279px) {
+            .desktop-nav, .navbar-right-desktop { display: none !important; }
+            .mobile-menu-button { display: flex !important; }
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav, .navbar-right-desktop { display: flex !important; }
+            .mobile-menu-button { display: none !important; }
+        }
+
+        .animate-fadeInUp { opacity: 0; }
+        
+        /* Grayscale hover utility for team section */
+        .grayscale-hover { filter: grayscale(100%); transition: filter 0.5s ease; }
+        .team-card:hover .grayscale-hover { filter: grayscale(0%); }
+    </style>
+</head>
+<body class="w-full overflow-x-hidden m-0 p-0 antialiased bg-theme-main text-body-theme">
+
+    <div class="relative w-full max-w-[1920px] mx-auto overflow-x-hidden flex flex-col min-h-screen">
+        
+        <nav id="navbar" class="navbar-container fixed top-0 inset-x-0 z-[1000]">
+            <div class="container mx-auto px-4 w-full">
+                <div class="flex items-center justify-between">
+                    
+                    <a href="index.html" class="flex items-center gap-3 no-underline transition-transform duration-300 hover:scale-105 group">
+                        <div class="relative w-10 h-10 bg-black rounded-lg flex items-center justify-center shrink-0 border-2 border-primary overflow-hidden">
+                            <i class="fas fa-bug text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <div class="text-xl md:text-2xl font-black text-heading-theme tracking-tight">Nutri<span class="text-primary">Bug</span></div>
+                        </div>
+                    </a>
+                    
+                    <div class="desktop-nav items-center space-x-0 xl:space-x-1 hidden xl:flex">
+                        <div class="dropdown" id="home-dropdown">
+                            <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">
+                                Home <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </div>
+                            <div class="dropdown-menu">
+                                <a href="index.html" class="dropdown-item">Home 1</a>
+                                <a href="home-2.html" class="dropdown-item">Home 2</a>
+                            </div>
+                        </div>
+                        <a href="about.html" class="nav-link active">About</a>
+                        <a href="products.html" class="nav-link">Products</a>
+                        <a href="sustainability.html" class="nav-link">Sustainability</a>
+                        <a href="wholesale.html" class="nav-link">Wholesale</a>
+                        <a href="pricing.html" class="nav-link">Pricing</a>
+                        <a href="faq.html" class="nav-link">FAQ</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </div>
+                    
+                    <div class="navbar-right-desktop flex items-center gap-2 lg:gap-3 shrink-0">
+                        <button class="w-10 h-10 bg-theme-alt text-heading-theme border border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-theme-toggle-btn" title="Toggle Dark Mode">
+                            <i class="fas fa-moon" id="desktop-theme-icon"></i>
+                        </button>
+                        <button class="w-10 h-10 bg-theme-alt text-heading-theme border border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-rtl-toggle-btn" title="Toggle RTL">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                        
+                        <a href="login.html" class="h-10 bg-transparent border border-theme text-heading-theme px-5 rounded-lg font-bold text-sm transition-all hover:bg-primary hover:text-base hover:border-primary shadow-sm flex items-center justify-center gap-2 shrink-0 no-underline box-border">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a href="register.html" class="h-10 bg-primary text-white px-5 rounded-lg font-bold text-sm transition-all hover:bg-white hover:text-primary shadow-lg hover:shadow-xl flex items-center justify-center gap-2 shrink-0 border-2 border-transparent hover:border-primary no-underline box-border">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </div>
+                    
+                    <button id="mobile-menu-btn" class="hidden text-heading-theme cursor-pointer bg-transparent border-0 mobile-menu-button items-center justify-center h-10 w-10 group relative hover:text-primary transition-colors">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[9999] overflow-y-auto">
+            <div class="p-4 sm:p-6">
+                <div class="flex flex-wrap justify-between items-center mb-8 gap-3">
+                    <a href="index.html" class="flex items-center gap-2 no-underline">
+                        <div class="relative w-10 h-10 bg-black rounded-lg flex items-center justify-center shrink-0 border-2 border-primary overflow-hidden">
+                            <i class="fas fa-bug text-white"></i>
+                        </div>
+                        <div>
+                            <div class="text-lg md:text-2xl font-black text-heading-theme tracking-tight">Nutri<span class="text-primary">Bug</span></div>
+                        </div>
+                    </a>
+                    
+                    <div class="flex items-center bg-card-theme rounded-lg px-2 py-1 shadow-md border border-theme">
+                        <button id="mobile-theme-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
+                            <i class="fas fa-moon" id="mobile-theme-icon"></i>
+                        </button>
+                        <button id="mobile-rtl-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                        <button id="close-mobile-menu" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-xl sm:text-2xl transition-transform active:scale-90 border-0 cursor-pointer bg-transparent hover:text-primary">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="space-y-1">
+                    <div>
+                        <button id="mobile-home-btn" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline cursor-pointer border-0 bg-transparent hover:text-primary transition-colors" onclick="toggleMobileDropdown('home-mobile')">
+                            <span>Home</span>
+                            <i class="fas fa-chevron-down dropdown-arrow text-warmgray"></i>
+                        </button>
+                        <div id="home-mobile" class="mobile-dropdown-content">
+                            <a href="index.html" class="block py-2.5">Home 1</a>
+                            <a href="home-2.html" class="block py-2.5">Home 2</a>
+                        </div>
+                    </div>
+                    
+                    <a href="about.html" class="flex items-center justify-between w-full text-primary font-bold text-lg py-3 px-2 no-underline border-b border-theme transition-colors"><span>About</span></a>
+                    <a href="products.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Products</span></a>
+                    <a href="sustainability.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Sustainability</span></a>
+                    <a href="wholesale.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Wholesale</span></a>
+                    <a href="pricing.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Pricing</span></a>
+                    <a href="faq.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>FAQ</span></a>
+                    <a href="contact.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Contact</span></a>
+                    
+                    <div class="mt-8 pt-6 border-t border-theme space-y-3">
+                        <a href="login.html" class="bg-transparent border border-theme text-heading-theme w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-primary hover:text-base hover:border-primary flex items-center justify-center gap-2 no-underline">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a href="register.html" class="bg-primary text-white w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-white hover:text-primary flex items-center justify-center gap-2 shadow-lg no-underline border-2 border-transparent hover:border-primary">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="w-full flex-grow flex flex-col">
+            
+            <section class="h-[100dvh] w-full pt-[70px] bg-base relative flex items-center justify-start overflow-hidden box-border">
+                <div class="absolute inset-0 z-0 pt-[70px]">
+                    <img src="Images/nutriabouthero.jpg" alt="NutriBug Origin Background" class="w-full h-full object-cover filter contrast-125 opacity-30 mix-blend-luminosity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-base via-base/80 to-transparent"></div>
+                    <div class="absolute top-1/4 right-0 w-[600px] h-[600px] bg-primary rounded-full blur-[200px] opacity-10 pointer-events-none"></div>
+                </div>
+
+                <div class="container mx-auto px-4 max-w-7xl relative z-10 w-full">
+                    <div class="max-w-4xl">
+                        <span class="animate-fadeInUp inline-block text-primary font-black uppercase tracking-widest text-sm mb-6 border-l-2 border-primary pl-4" style="animation-delay: 0.1s;">The Origin Story</span>
+                        <h1 class="animate-fadeInUp text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-[1.05] tracking-tight" style="animation-delay: 0.2s;">
+                            We didn't just break the mold. <br>
+                            <span class="text-primary">We engineered a new one.</span>
+                        </h1>
+                        <p class="animate-fadeInUp text-lg md:text-2xl text-gray-400 font-medium max-w-2xl leading-relaxed" style="animation-delay: 0.3s;">
+                            NutriBug was founded on a single, radical premise: The future of human performance shouldn't cost the Earth its future.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-24 bg-theme-main relative z-20 border-t border-theme flex-grow">
+                <div class="container mx-auto px-4 max-w-7xl h-full">
+                    <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 h-full items-stretch">
+                        
+                        <div class="w-full lg:w-5/12 relative">
+                            <div class="sticky top-[100px]">
+                                <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">The Philosophy</span>
+                                <h2 class="text-4xl md:text-5xl font-black text-heading-theme mb-6">Our Core <br>Philosophy.</h2>
+                                
+                                <p class="text-body-theme text-lg font-medium leading-relaxed mb-6">
+                                    The supplement industry is broken. It relies on outdated farming methods that drain our planet's resources while delivering inferior, hard-to-digest macros. 
+                                </p>
+                                <p class="text-body-theme text-lg font-medium leading-relaxed mb-6">
+                                    We looked to nature's most efficient, protein-dense organisms and applied modern milling technology. The result is pure, uncompromising output.
+                                </p>
+                                <p class="text-body-theme text-lg font-medium leading-relaxed mb-6">
+                                    For decades, athletes have been forced to choose between optimal performance and environmental responsibility. We refuse to accept that compromise. By harnessing the incredible biological efficiency of insects, we've bypassed the bloated infrastructure of traditional agriculture.
+                                </p>
+                                <p class="text-body-theme text-lg font-medium leading-relaxed mb-6">
+                                    Our mission is to re-engineer human fuel from the ground up. We believe that true strength doesn't just come from what you lift, but what you consume and the impact it leaves behind. Every scoop, every bar, and every capsule is a testament to this relentless pursuit of perfection.
+                                </p>
+                                <p class="text-body-theme text-lg font-medium leading-relaxed">
+                                    Welcome to the paradigm shift. Welcome to a cleaner, faster, and infinitely more sustainable way to build your legacy.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="w-full lg:w-7/12 flex flex-col gap-8 h-full">
+                            <div class="bg-card-theme p-10 rounded-3xl border border-theme shadow-sm hover:border-primary transition-colors duration-300 flex-grow">
+                                <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-2xl mb-6">
+                                    <i class="fas fa-microscope"></i>
+                                </div>
+                                <h3 class="text-2xl font-black text-heading-theme mb-4">Relentless Innovation</h3>
+                                <p class="text-body-theme font-medium leading-relaxed">We don't do "good enough." Our proprietary extraction and milling process breaks down chitin fibers into a bio-available matrix, guaranteeing smooth texture and maximum absorption.</p>
+                            </div>
+
+                            <div class="bg-card-theme p-10 rounded-3xl border border-theme shadow-sm hover:border-primary transition-colors duration-300 flex-grow">
+                                <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-2xl mb-6">
+                                    <i class="fas fa-globe-americas"></i>
+                                </div>
+                                <h3 class="text-2xl font-black text-heading-theme mb-4">Zero-Compromise Sustainability</h3>
+                                <p class="text-body-theme font-medium leading-relaxed">Traditional livestock requires oceans of water and miles of land. Our vertical insect farms use 95% less water and produce near-zero methane. We are building the architecture for sustainable human survival.</p>
+                            </div>
+
+                            <div class="bg-card-theme p-10 rounded-3xl border border-theme shadow-sm hover:border-primary transition-colors duration-300 flex-grow">
+                                <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-2xl mb-6">
+                                    <i class="fas fa-dumbbell"></i>
+                                </div>
+                                <h3 class="text-2xl font-black text-heading-theme mb-4">Elite Human Output</h3>
+                                <p class="text-body-theme font-medium leading-relaxed">This isn't just about saving the planet; it's about winning. With all 9 essential aminos and rich B12 content, our fuel is designed for athletes who refuse to lose.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-32 bg-theme-alt relative overflow-hidden border-y border-theme">
+                <div class="container mx-auto px-4 max-w-7xl relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        
+                        <div class="relative h-[500px] lg:h-[600px] w-full">
+                            <div class="absolute top-0 right-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-2xl z-10">
+                                <img src="Images/Organic Feed.jpg" alt="Vertical Farming Setup" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-2xl z-20 border-8 border-theme-alt">
+                                <img src="Images/tree.jpg" alt="Nature connection" class="w-full h-full object-cover grayscale opacity-80">
+                                <div class="absolute inset-0 bg-black/20"></div>
+                            </div>
+                            
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 bg-card-theme p-6 rounded-full shadow-2xl border-4 border-theme flex flex-col items-center justify-center w-36 h-36">
+                                <span class="text-primary text-3xl mb-1"><i class="fas fa-leaf"></i></span>
+                                <span class="font-black text-heading-theme text-sm uppercase">100% Clean</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">The Method</span>
+                            <h2 class="text-4xl md:text-5xl font-black text-heading-theme mb-6">The Architecture <br>of Harvesting.</h2>
+                            <p class="text-body-theme text-lg font-medium mb-8 leading-relaxed">
+                                Our facilities look more like silicon-valley server rooms than traditional farms. We utilize climate-controlled, vertical biomes to raise crickets ethically and cleanly.
+                            </p>
+                            <ul class="space-y-6">
+                                <li class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-theme-main border border-theme flex items-center justify-center text-primary shrink-0 mt-1">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-heading-theme mb-1">Organic Feed</h4>
+                                        <p class="text-body-theme text-sm font-medium">Insects are fed exclusively on clean, organic pre-consumer plant matter.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-theme-main border border-theme flex items-center justify-center text-primary shrink-0 mt-1">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-heading-theme mb-1">Zero Antibiotics</h4>
+                                        <p class="text-body-theme text-sm font-medium">A sterile, highly monitored environment means drugs are never needed.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-theme-main border border-theme flex items-center justify-center text-primary shrink-0 mt-1">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-heading-theme mb-1">Humane Harvesting</h4>
+                                        <p class="text-body-theme text-sm font-medium">Temperature-lowering techniques put insects into a natural hibernation state.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-24 bg-primary relative overflow-hidden border-y border-white/10">
+                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at center, #000 1px, transparent 1px); background-size: 20px 20px;"></div>
+                <div class="container mx-auto px-4 max-w-7xl relative z-10 text-center">
+                    <span class="text-[#1A1A1A] font-black uppercase tracking-widest text-sm mb-2 block">The Impact</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-[#1A1A1A] mb-16">The Real Numbers</h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                        <div class="bg-[#1A1A1A] p-10 rounded-3xl shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
+                            <div class="text-primary text-5xl mb-4"><i class="fas fa-tint"></i></div>
+                            <h3 class="text-5xl font-black text-white mb-2">100x</h3>
+                            <p class="text-gray-400 font-bold uppercase tracking-wider text-sm">Less Water Used</p>
+                            <p class="text-xs text-gray-500 mt-4 font-medium">Compared to traditional cattle farming per gram of protein.</p>
+                        </div>
+                        
+                        <div class="bg-[#1A1A1A] p-10 rounded-3xl shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
+                            <div class="text-primary text-5xl mb-4"><i class="fas fa-smog"></i></div>
+                            <h3 class="text-5xl font-black text-white mb-2">99%</h3>
+                            <p class="text-gray-400 font-bold uppercase tracking-wider text-sm">Fewer Emissions</p>
+                            <p class="text-xs text-gray-500 mt-4 font-medium">Near zero greenhouse gas output during the entire lifecycle.</p>
+                        </div>
+                        
+                        <div class="bg-[#1A1A1A] p-10 rounded-3xl shadow-xl transform hover:-translate-y-2 transition-transform duration-300">
+                            <div class="text-primary text-5xl mb-4"><i class="fas fa-chart-line"></i></div>
+                            <h3 class="text-5xl font-black text-white mb-2">3x</h3>
+                            <p class="text-gray-400 font-bold uppercase tracking-wider text-sm">Faster Recovery</p>
+                            <p class="text-xs text-gray-500 mt-4 font-medium">Reported by surveyed athletes switching from plant isolates.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-24 bg-theme-main relative border-b border-theme">
+                <div class="container mx-auto px-4 max-w-7xl">
+                    <div class="text-center mb-16">
+                        <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">The Architects</span>
+                        <h2 class="text-4xl md:text-5xl font-black text-heading-theme">Minds Behind the Matrix</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                        
+                        <div class="team-card group relative rounded-3xl overflow-hidden bg-card-theme border border-theme h-[450px] w-full shadow-sm hover:shadow-md">
+                            <img src="Images/David Ross.jpg" alt="David Ross" class="absolute inset-0 w-full h-full object-cover grayscale-hover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <h3 class="text-2xl font-black text-white mb-1">David Ross</h3>
+                                <p class="text-primary font-bold text-sm uppercase tracking-wider mb-4">Lead Bio-Engineer</p>
+                                <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-3">
+                                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors"><i class="fab fa-linkedin-in text-sm"></i></a>
+                                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors"><i class="fab fa-twitter text-sm"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-card group relative rounded-3xl overflow-hidden bg-card-theme border border-theme h-[450px] w-full shadow-sm hover:shadow-md">
+                            <img src="Images/Emma Wilson.jpg" alt="Emma Wilson" class="absolute inset-0 w-full h-full object-cover grayscale-hover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <h3 class="text-2xl font-black text-white mb-1">Emma Wilson</h3>
+                                <p class="text-primary font-bold text-sm uppercase tracking-wider mb-4">Chief Performance Officer</p>
+                                <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-3">
+                                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors"><i class="fab fa-linkedin-in text-sm"></i></a>
+                                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors"><i class="fab fa-twitter text-sm"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-card group relative rounded-3xl overflow-hidden bg-card-theme border border-theme h-[450px] w-full shadow-sm hover:shadow-md">
+                            <img src="Images/john basco.jpg" alt="John Basco" class="absolute inset-0 w-full h-full object-cover grayscale-hover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <h3 class="text-2xl font-black text-white mb-1">John Basco</h3>
+                                <p class="text-primary font-bold text-sm uppercase tracking-wider mb-4">Head of Operations</p>
+                                <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-3">
+                                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors"><i class="fab fa-linkedin-in text-sm"></i></a>
+                                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors"><i class="fab fa-twitter text-sm"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-32 bg-theme-alt relative flex items-center justify-center">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80" alt="Gym Motivation" class="w-full h-full object-cover opacity-10 filter grayscale mix-blend-overlay">
+                </div>
+                
+                <div class="container mx-auto px-4 max-w-4xl relative z-10 text-center bg-card-theme p-12 md:p-20 rounded-[3rem] border border-theme shadow-2xl">
+                    <span class="text-primary font-black uppercase tracking-widest text-sm mb-4 block">The Next Step</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-heading-theme mb-6">Stop Reading. <br>Start Fueling.</h2>
+                    <p class="text-body-theme text-lg font-medium mb-10 max-w-xl mx-auto">
+                        You know the science. You've seen the impact. Now it's time to upgrade your nutritional architecture and join the elite.
+                    </p>
+                    <a href="products.html" class="inline-flex items-center justify-center bg-heading-theme text-bg-color px-10 py-5 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-primary hover:text-white transition-all shadow-xl no-underline border-2 border-transparent hover:border-primary transform hover:scale-105">
+                        Shop The Arsenal
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="bg-[#111111] py-12 md:py-16 shrink-0 relative">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+                    <div class="text-center sm:text-left">
+                        <a href="index.html" class="flex items-center justify-center sm:justify-start gap-3 mb-6 no-underline">
+                            <div class="relative w-10 h-10 bg-black rounded-lg flex items-center justify-center shrink-0 border-2 border-primary overflow-hidden">
+                                <i class="fas fa-bug text-white"></i>
+                            </div>
+                            <div>
+                                <span class="text-xl md:text-2xl font-bold text-white block">Nutri<span class="text-primary">Bug</span></span>
+                            </div>
+                        </a>
+                        <p class="text-gray-400 mb-6 font-medium text-sm">The future of protein is here. Sustainable, nutritious, and delicious insect-based products to forge your legacy.</p>
+                        <div class="flex justify-center sm:justify-start space-x-3 sm:space-x-4">
+                            <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary transition shadow-sm"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary transition shadow-sm"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary transition shadow-sm"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary transition shadow-sm"><i class="fas fa-music"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-bold mb-6 text-white">Shop</h3>
+                        <ul class="space-y-4 text-base">
+                            <li><a href="products.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Protein Powders</a></li>
+                            <li><a href="products.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Energy Bars</a></li>
+                            <li><a href="products.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Amino Snacks</a></li>
+                            <li><a href="merch.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Merch & Gear</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-bold mb-6 text-white">Platform</h3>
+                        <ul class="space-y-4 text-base">
+                            <li><a href="about.html" class="text-gray-400 hover:text-white transition font-medium no-underline">About Us</a></li>
+                            <li><a href="sustainability.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Sustainability Impact</a></li>
+                            <li><a href="pricing.html" class="text-gray-400 hover:text-white transition font-medium no-underline">Pricing & Subs</a></li>
+                            <li><a href="faq.html" class="text-gray-400 hover:text-white transition font-medium no-underline">FAQ & Support</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-bold mb-4 text-white">Newsletter</h3>
+                        <p class="text-gray-400 mb-6 text-base font-medium leading-relaxed">Subscribe for recipe updates, fitness tips, and exclusive drops.</p>
+                        <form class="flex flex-col gap-3">
+                            <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary font-medium shadow-sm text-center sm:text-left" required>
+                            <button type="submit" class="w-full bg-primary text-white px-4 py-3 rounded-lg font-bold hover:bg-white hover:text-primary transition shadow-sm">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm font-medium relative text-center sm:text-left">
+                    <p class="mb-4 md:mb-0 text-gray-400">© 2026 NutriBug. Built for the Future.</p>
+                    <div class="flex justify-center sm:justify-end gap-6 w-full md:w-auto">
+                        <a href="privacy.html" class="text-gray-400 hover:text-white transition no-underline">Privacy Policy</a>
+                        <a href="terms.html" class="text-gray-400 hover:text-white transition no-underline">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <button id="scroll-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-primary text-white rounded-full shadow-lg hidden hover:bg-white hover:text-primary transition z-50 border-2 border-transparent hover:border-primary">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // --- THEME & RTL LOGIC ---
+        const desktopThemeToggleBtn = document.getElementById('desktop-theme-toggle-btn');
+        const desktopThemeIcon = document.getElementById('desktop-theme-icon');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        const htmlElement = document.documentElement;
+        const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        
+        // Initialize Theme - Defaults to Dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            if (desktopThemeIcon) desktopThemeIcon.className = 'fas fa-sun';
+            if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-sun';
+        }
+
+        function toggleTheme() {
+            const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            if (desktopThemeIcon) desktopThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (mobileThemeIcon) mobileThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            
+            window.dispatchEvent(new Event('resize'));
+        }
+
+        if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // Desktop RTL Toggle
+        const currentDir = localStorage.getItem('direction') || 'ltr';
+        htmlElement.setAttribute('dir', currentDir);
+        
+        function toggleRTL() {
+            const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', direction);
+            localStorage.setItem('direction', direction);
+        }
+        if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);
+        if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+
+        // --- DROPDOWNS & MENU ---
+        function toggleDesktopDropdown(id) {
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if(d.id !== id) d.classList.remove('active');
+            });
+            document.getElementById(id).classList.toggle('active');
+        }
+        
+        function toggleMobileDropdown(id) {
+            document.getElementById(id).classList.toggle('active');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+        }
+        if(closeMobileMenu) {
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        }
+
+        // --- SMOOTH SCROLL & OFFSET ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    mobileMenu.classList.remove('active'); 
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70, 
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // --- SCROLL TOP BUTTON ---
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('hidden', window.scrollY <= 300);
+        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        
+        window.addEventListener('resize', () => {
+            if(window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
