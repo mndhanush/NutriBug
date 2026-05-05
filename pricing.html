@@ -18,13 +18,20 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#F6AD55',   // Honey Yellow
-                        secondary: '#E6D3A3', // Warm Sand
-                        base: '#1A1A1A',      // Rich Black
-                        cream: '#FFFFFF',     // Pure White
-                        warmgray: '#9CA3AF',
-                        charcoal: '#1A1A1A',  // Rich Black
-                        'card-dark': '#2A2A2A'// Dark Card
+                        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+                        'theme-main': 'rgb(var(--color-bg-main) / <alpha-value>)',
+                        'theme-alt': 'rgb(var(--color-bg-alt) / <alpha-value>)',
+                        'card-theme': 'rgb(var(--color-card) / <alpha-value>)',
+                        'text-main': 'rgb(var(--color-text-main) / <alpha-value>)',
+                        'text-heading': 'rgb(var(--color-text-heading) / <alpha-value>)',
+                        'border-theme': 'rgb(var(--color-border) / <alpha-value>)',
+                        'navbar-bg': 'rgb(var(--color-navbar) / <alpha-value>)',
+                        
+                        /* Permanent Dark Theme Colors for Hero & Footer */
+                        'dark-base': '#121212',
+                        'dark-surface': '#1A1A1A',
+                        'dark-border': '#333333',
                     },
                     animation: {
                         'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
@@ -36,8 +43,8 @@
                             'to': { opacity: '1', transform: 'translateY(0)' }
                         },
                         glow: {
-                            'from': { boxShadow: '0 0 10px rgba(246, 173, 85, 0.2)' },
-                            'to': { boxShadow: '0 0 25px rgba(246, 173, 85, 0.6)' },
+                            'from': { boxShadow: '0 0 10px rgba(var(--color-primary), 0.2)' },
+                            'to': { boxShadow: '0 0 25px rgba(var(--color-primary), 0.6)' },
                         }
                     }
                 }
@@ -50,29 +57,29 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
         :root {
-            --primary-color: #F6AD55; 
-            --secondary-color: #E6D3A3; 
-            --bg-color: #FFFFFF; 
-            --bg-alt: #F3F4F6; 
-            --card-bg: #FFFFFF;    
-            --text-main: #1A1A1A; 
-            --text-heading: #1A1A1A; 
-            --navbar-bg: #FFFFFF; 
-            --nav-text: #1A1A1A;
-            --border-color: #E5E7EB; 
+            /* Light Mode Variables - Darker for higher contrast */
+            --color-primary: 217 119 6;    /* Dark Amber */
+            --color-secondary: 180 83 9;   /* Darker Warm Tone */
+            --color-bg-main: 255 255 255;  /* Pure White */
+            --color-bg-alt: 243 244 246;   /* Light Gray */
+            --color-card: 255 255 255;     /* Pure White */
+            --color-text-main: 26 26 26;   /* Near Black */
+            --color-text-heading: 17 17 17;/* True Black */
+            --color-navbar: 255 255 255;   /* Pure White */
+            --color-border: 229 231 235;   /* Gray 200 */
         }
         
         [data-theme="dark"] {
-            --primary-color: #F6AD55;   
-            --secondary-color: #E6D3A3; 
-            --bg-color: #1A1A1A;        
-            --bg-alt: #222222;          
-            --card-bg: #2A2A2A;         
-            --text-main: #FFFFFF;       
-            --text-heading: #FFFFFF;    
-            --navbar-bg: #1A1A1A;       
-            --nav-text: #FFFFFF;
-            --border-color: #333333;    
+            /* Dark Mode Variables - Strictly Black/Dark Grey */
+            --color-primary: 246 173 85;   /* Honey Yellow */
+            --color-secondary: 230 211 163;/* Warm Sand */
+            --color-bg-main: 18 18 18;     /* Dark Grey / Black */
+            --color-bg-alt: 26 26 26;      /* Rich Black */
+            --color-card: 34 34 34;        /* Dark Card */
+            --color-text-main: 229 231 235;/* Light Gray */
+            --color-text-heading: 255 255 255; /* White */
+            --color-navbar: 18 18 18;      /* Dark Grey / Black */
+            --color-border: 51 51 51;      /* Dark Border */
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -88,27 +95,16 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: rgb(var(--color-bg-main));
+            color: rgb(var(--color-text-main));
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
-        p, label { color: var(--text-main); }
-        
-        .bg-theme-main { background-color: var(--bg-color); }
-        .bg-theme-alt { background-color: var(--bg-alt); }
-        .bg-card-theme { background-color: var(--card-bg); }
-        
-        .text-heading-theme { color: var(--text-heading); }
-        .text-body-theme { color: var(--text-main); }
-        .border-theme { border-color: var(--border-color); }
-        
         /* Navbar Styles */
         .navbar-container {
-            background-color: var(--navbar-bg);
+            background-color: rgb(var(--color-navbar));
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgb(var(--color-border));
             transition: background-color 0.3s ease, border-color 0.3s ease;
             height: 70px;
             display: flex;
@@ -116,7 +112,7 @@
         }
         
         .nav-link {
-            color: var(--nav-text); 
+            color: rgb(var(--color-text-main)); 
             padding: 8px 10px; 
             transition: all 0.3s ease;
             position: relative;
@@ -130,16 +126,16 @@
             text-decoration: none;
         }
         
-        .nav-link:hover { color: var(--primary-color); }
-        .nav-link.active { color: var(--primary-color); font-weight: 600; }
+        .nav-link:hover { color: rgb(var(--color-primary)); }
+        .nav-link.active { color: rgb(var(--color-primary)); font-weight: 600; }
         
         .dropdown { position: relative; }
         .dropdown-menu {
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: var(--card-bg); 
-            border: 1px solid var(--border-color);
+            background-color: rgb(var(--color-card)); 
+            border: 1px solid rgb(var(--color-border));
             border-radius: 8px;
             min-width: 160px;
             opacity: 0;
@@ -156,26 +152,26 @@
             opacity: 1; visibility: visible; transform: translateY(0);
         }
         .dropdown-item {
-            display: block; padding: 12px 20px; color: var(--nav-text); 
-            transition: all 0.3s ease; border-bottom: 1px solid var(--border-color); font-size: 0.9rem;
+            display: block; padding: 12px 20px; color: rgb(var(--color-text-main)); 
+            transition: all 0.3s ease; border-bottom: 1px solid rgb(var(--color-border)); font-size: 0.9rem;
             text-decoration: none;
         }
-        .dropdown-item:hover { background-color: rgba(246, 173, 85, 0.1); color: var(--primary-color); padding-left: 25px; }
+        .dropdown-item:hover { background-color: rgb(var(--color-primary) / 0.1); color: rgb(var(--color-primary)); padding-left: 25px; }
         .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
         .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
         
         .mobile-menu {
             transform: translateX(-100%); transition: transform 0.3s ease;
-            background-color: var(--navbar-bg); color: var(--text-heading); 
+            background-color: rgb(var(--color-navbar)); color: rgb(var(--color-text-heading)); 
         }
         .mobile-menu.active { transform: translateX(0); }
         
         .mobile-dropdown-content {
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
-            padding-left: 20px; background-color: rgba(255,255,255,0.05); border-radius: 8px;
+            padding-left: 20px; background-color: rgba(128,128,128,0.05); border-radius: 8px;
         }
-        .mobile-dropdown-content a { color: var(--text-main); text-decoration: none;} 
-        .mobile-dropdown-content a:hover { color: var(--primary-color); }
+        .mobile-dropdown-content a { color: rgb(var(--color-text-main)); text-decoration: none;} 
+        .mobile-dropdown-content a:hover { color: rgb(var(--color-primary)); }
         .mobile-dropdown-content.active { max-height: 500px; margin: 5px 0; }
         
         @media (max-width: 1279px) {
@@ -198,7 +194,7 @@
         }
     </style>
 </head>
-<body class="w-full overflow-x-hidden m-0 p-0 antialiased bg-theme-main text-body-theme flex flex-col min-h-screen">
+<body class="w-full overflow-x-hidden m-0 p-0 antialiased bg-theme-main text-text-main flex flex-col min-h-screen">
 
     <div class="relative w-full max-w-[1920px] mx-auto overflow-x-hidden flex flex-col flex-grow">
         
@@ -211,7 +207,7 @@
                             <i class="fas fa-bug text-white text-lg"></i>
                         </div>
                         <div>
-                            <div class="text-xl md:text-2xl font-black text-heading-theme tracking-tight">Nutri<span class="text-primary">Bug</span></div>
+                            <div class="text-xl md:text-2xl font-black text-text-heading tracking-tight">Nutri<span class="text-primary">Bug</span></div>
                         </div>
                     </a>
                     
@@ -235,14 +231,14 @@
                     </div>
                     
                     <div class="navbar-right-desktop flex items-center gap-2 lg:gap-3 shrink-0">
-                        <button class="w-10 h-10 bg-theme-alt text-heading-theme border border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-theme-toggle-btn" title="Toggle Dark Mode">
+                        <button class="w-10 h-10 bg-theme-alt text-text-heading border border-border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-theme-toggle-btn" title="Toggle Dark Mode">
                             <i class="fas fa-moon" id="desktop-theme-icon"></i>
                         </button>
-                        <button class="w-10 h-10 bg-theme-alt text-heading-theme border border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-rtl-toggle-btn" title="Toggle RTL">
+                        <button class="w-10 h-10 bg-theme-alt text-text-heading border border-border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-rtl-toggle-btn" title="Toggle RTL">
                             <i class="fas fa-exchange-alt"></i>
                         </button>
                         
-                        <a href="login.html" class="h-10 bg-transparent border border-theme text-heading-theme px-5 rounded-lg font-bold text-sm transition-all hover:bg-primary hover:text-base hover:border-primary shadow-sm flex items-center justify-center gap-2 shrink-0 no-underline box-border">
+                        <a href="login.html" class="h-10 bg-transparent border border-border-theme text-text-heading px-5 rounded-lg font-bold text-sm transition-all hover:bg-primary hover:text-white hover:border-primary shadow-sm flex items-center justify-center gap-2 shrink-0 no-underline box-border">
                             <i class="fas fa-sign-in-alt"></i> Login
                         </a>
                         <a href="register.html" class="h-10 bg-primary text-white px-5 rounded-lg font-bold text-sm transition-all hover:bg-white hover:text-primary shadow-lg hover:shadow-xl flex items-center justify-center gap-2 shrink-0 border-2 border-transparent hover:border-primary no-underline box-border">
@@ -250,7 +246,7 @@
                         </a>
                     </div>
                     
-                    <button id="mobile-menu-btn" class="hidden text-heading-theme cursor-pointer bg-transparent border-0 mobile-menu-button items-center justify-center h-10 w-10 group relative hover:text-primary transition-colors">
+                    <button id="mobile-menu-btn" class="hidden text-text-heading cursor-pointer bg-transparent border-0 mobile-menu-button items-center justify-center h-10 w-10 group relative hover:text-primary transition-colors">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -265,18 +261,18 @@
                             <i class="fas fa-bug text-white"></i>
                         </div>
                         <div>
-                            <div class="text-lg md:text-2xl font-black text-heading-theme tracking-tight">Nutri<span class="text-primary">Bug</span></div>
+                            <div class="text-lg md:text-2xl font-black text-text-heading tracking-tight">Nutri<span class="text-primary">Bug</span></div>
                         </div>
                     </a>
                     
-                    <div class="flex items-center bg-card-theme rounded-lg px-2 py-1 shadow-md border border-theme">
-                        <button id="mobile-theme-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
+                    <div class="flex items-center bg-card-theme rounded-lg px-2 py-1 shadow-md border border-border-theme">
+                        <button id="mobile-theme-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-text-heading flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
                             <i class="fas fa-moon" id="mobile-theme-icon"></i>
                         </button>
-                        <button id="mobile-rtl-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
+                        <button id="mobile-rtl-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-text-heading flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
                             <i class="fas fa-exchange-alt"></i>
                         </button>
-                        <button id="close-mobile-menu" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-xl sm:text-2xl transition-transform active:scale-90 border-0 cursor-pointer bg-transparent hover:text-primary">
+                        <button id="close-mobile-menu" class="w-9 h-9 sm:w-10 sm:h-10 text-text-heading flex items-center justify-center text-xl sm:text-2xl transition-transform active:scale-90 border-0 cursor-pointer bg-transparent hover:text-primary">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -284,9 +280,9 @@
                 
                 <div class="space-y-1">
                     <div>
-                        <button id="mobile-home-btn" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline cursor-pointer border-0 bg-transparent hover:text-primary transition-colors" onclick="toggleMobileDropdown('home-mobile')">
+                        <button id="mobile-home-btn" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline cursor-pointer border-0 bg-transparent hover:text-primary transition-colors" onclick="toggleMobileDropdown('home-mobile')">
                             <span>Home</span>
-                            <i class="fas fa-chevron-down dropdown-arrow text-warmgray"></i>
+                            <i class="fas fa-chevron-down dropdown-arrow text-gray-500"></i>
                         </button>
                         <div id="home-mobile" class="mobile-dropdown-content">
                             <a href="index.html" class="block py-2.5">Home 1</a>
@@ -294,16 +290,16 @@
                         </div>
                     </div>
                     
-                    <a href="about.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>About</span></a>
-                    <a href="products.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Products</span></a>
-                    <a href="sustainability.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Sustainability</span></a>
-                    <a href="wholesale.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Wholesale</span></a>
-                    <a href="pricing.html" class="flex items-center justify-between w-full text-primary font-bold text-lg py-3 px-2 no-underline border-b border-theme transition-colors"><span>Pricing</span></a>
-                    <a href="faq.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>FAQ</span></a>
-                    <a href="contact.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Contact</span></a>
+                    <a href="about.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>About</span></a>
+                    <a href="products.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>Products</span></a>
+                    <a href="sustainability.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>Sustainability</span></a>
+                    <a href="wholesale.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>Wholesale</span></a>
+                    <a href="pricing.html" class="flex items-center justify-between w-full text-primary font-bold text-lg py-3 px-2 no-underline border-b border-border-theme transition-colors"><span>Pricing</span></a>
+                    <a href="faq.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>FAQ</span></a>
+                    <a href="contact.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>Contact</span></a>
                     
-                    <div class="mt-8 pt-6 border-t border-theme space-y-3">
-                        <a href="login.html" class="bg-transparent border border-theme text-heading-theme w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-primary hover:text-base hover:border-primary flex items-center justify-center gap-2 no-underline">
+                    <div class="mt-8 pt-6 border-t border-border-theme space-y-3">
+                        <a href="login.html" class="bg-transparent border border-border-theme text-text-heading w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-primary hover:text-white hover:border-primary flex items-center justify-center gap-2 no-underline">
                             <i class="fas fa-sign-in-alt"></i> Login
                         </a>
                         <a href="register.html" class="bg-primary text-white w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-white hover:text-primary flex items-center justify-center gap-2 shadow-lg no-underline border-2 border-transparent hover:border-primary">
@@ -316,10 +312,11 @@
 
         <main class="w-full flex-grow flex flex-col">
             
-            <section class="h-[100dvh] w-full pt-[70px] bg-base relative overflow-hidden flex items-center justify-center text-center border-b border-theme">
+            <!-- Hero Section (Permanently Dark) -->
+            <section class="min-h-[100dvh] w-full pt-[70px] bg-dark-base relative overflow-hidden flex items-center justify-center text-center border-b border-dark-border">
                 <div class="absolute inset-0 z-0 pt-[70px]">
-                    <img src="Images/pricing.jpg" alt="Pricing Background" class="w-full h-full object-cover filter contrast-125 opacity-20 mix-blend-luminosity">
-                    <div class="absolute inset-0 bg-gradient-to-t from-base via-base/80 to-base/40"></div>
+                   <img src="Images/pricing.jpg" alt="Pricing Background" class="w-full h-full object-cover filter contrast-125 opacity-20 mix-blend-luminosity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-base via-dark-base/80 to-dark-base/40"></div>
                 </div>
 
                 <div class="container mx-auto px-4 max-w-4xl relative z-10 flex flex-col items-center justify-center h-full">
@@ -329,7 +326,7 @@
                         <span class="text-primary">Dominate Routine.</span>
                     </h1>
                     <p class="animate-fadeInUp text-lg md:text-xl text-gray-400 font-medium leading-relaxed mb-10 max-w-3xl" style="animation-delay: 0.3s;">
-                        Choose the matrix loadout that matches your training intensity. Subscribers save up to 25% instantly and unlock elite platform perks.
+                        Select your fuel matrix. Subscribe to save 25% and unlock elite perks. No excuses.
                     </p>
                     
                     <div class="animate-fadeInUp" style="animation-delay: 0.4s;">
@@ -340,49 +337,51 @@
                 </div>
             </section>
 
-            <section id="plans" class="py-24 bg-theme-alt relative border-y border-theme z-20">
+            <section id="plans" class="py-24 bg-theme-alt relative border-y border-border-theme z-20">
                 <div class="container mx-auto px-4 max-w-7xl">
                     <div class="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-0 mt-8">
                         
-                        <div class="w-full lg:w-1/3 bg-card-theme border border-theme p-10 rounded-3xl lg:rounded-r-none shadow-sm relative z-10 hover:shadow-xl transition-all duration-300">
-                            <div class="text-heading-theme font-black uppercase tracking-widest text-xs mb-4 text-center lg:text-left">One-Time Purchase</div>
-                            <h3 class="text-3xl font-black text-heading-theme mb-2 text-center lg:text-left">The Trial</h3>
-                            <p class="text-body-theme text-sm font-medium mb-8 min-h-[40px] text-center lg:text-left">Perfect for testing the matrix before committing to the regimen.</p>
+                        <!-- Left Card -->
+                        <div class="w-full lg:w-1/3 bg-card-theme border border-border-theme p-10 rounded-3xl lg:rounded-r-none shadow-sm relative z-10 hover:shadow-xl transition-all duration-300">
+                            <div class="text-text-heading font-black uppercase tracking-widest text-xs mb-4 text-center lg:text-left">One-Time Purchase</div>
+                            <h3 class="text-3xl font-black text-text-heading mb-2 text-center lg:text-left">The Trial</h3>
+                            <p class="text-text-main text-sm font-medium mb-8 min-h-[40px] text-center lg:text-left">Test the matrix before committing to the regimen.</p>
                             
-                            <div class="flex items-baseline justify-center lg:justify-start gap-2 mb-8 border-b border-theme pb-8">
-                                <span class="text-5xl font-black text-heading-theme">$49</span>
-                                <span class="text-body-theme font-bold">/tub</span>
+                            <div class="flex items-baseline justify-center lg:justify-start gap-2 mb-8 border-b border-border-theme pb-8">
+                                <span class="text-5xl font-black text-text-heading">$49</span>
+                                <span class="text-text-main font-bold">/tub</span>
                             </div>
                             
                             <ul class="space-y-4 mb-10">
-                                <li class="flex items-center gap-3 text-sm font-medium text-body-theme">
-                                    <i class="fas fa-check text-warmgray"></i> 1x Matrix Isolate (30 Servings)
+                                <li class="flex items-center gap-3 text-sm font-medium text-text-main">
+                                    <i class="fas fa-check text-gray-500"></i> 1x Matrix Isolate (30 Servings)
                                 </li>
-                                <li class="flex items-center gap-3 text-sm font-medium text-body-theme">
-                                    <i class="fas fa-check text-warmgray"></i> Standard Shipping Rates
+                                <li class="flex items-center gap-3 text-sm font-medium text-text-main">
+                                    <i class="fas fa-check text-gray-500"></i> Standard Shipping Rates
                                 </li>
-                                <li class="flex items-center gap-3 text-sm font-medium text-body-theme opacity-50">
-                                    <i class="fas fa-times text-warmgray"></i> No Subscriber Perks
+                                <li class="flex items-center gap-3 text-sm font-medium text-text-main opacity-50">
+                                    <i class="fas fa-times text-gray-500"></i> No Subscriber Perks
                                 </li>
                             </ul>
                             
-                            <button class="w-full bg-theme-alt text-heading-theme hover:bg-primary hover:text-white border border-theme hover:border-primary px-6 py-4 rounded-xl font-black uppercase tracking-widest text-xs transition-colors">
+                            <button class="w-full bg-theme-alt text-text-heading hover:bg-primary hover:text-white border border-border-theme hover:border-primary px-6 py-4 rounded-xl font-black uppercase tracking-widest text-xs transition-colors">
                                 Buy Once
                             </button>
                         </div>
 
+                        <!-- Center Card (Permanently Dark) -->
                         <div class="w-full lg:w-1/3 bg-[#111111] border-2 border-primary p-12 rounded-3xl shadow-2xl relative z-30 transform lg:scale-105 animate-glow">
-                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-base px-6 py-1.5 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap">
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-6 py-1.5 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap">
                                 Most Popular
                             </div>
                             
                             <div class="text-primary font-black uppercase tracking-widest text-xs mb-4 mt-2 text-center lg:text-left">Subscribe & Save 15%</div>
                             <h3 class="text-4xl font-black text-white mb-2 text-center lg:text-left">The Core</h3>
-                            <p class="text-gray-400 text-sm font-medium mb-8 min-h-[40px] text-center lg:text-left">The standard monthly restock for consistent, high-output athletes.</p>
+                            <p class="text-gray-400 text-sm font-medium mb-8 min-h-[40px] text-center lg:text-left">The standard monthly restock for high-output athletes.</p>
                             
                             <div class="flex items-baseline justify-center lg:justify-start gap-2 mb-8 border-b border-white/10 pb-8">
                                 <span class="text-6xl font-black text-primary">$41</span>
-                                <span class="text-gray-400 font-bold">/tub per month</span>
+                                <span class="text-gray-400 font-bold">/mo</span>
                             </div>
                             
                             <ul class="space-y-4 mb-10">
@@ -405,32 +404,33 @@
                             </button>
                         </div>
 
-                        <div class="w-full lg:w-1/3 bg-card-theme border border-theme p-10 rounded-3xl lg:rounded-l-none shadow-sm relative z-10 hover:shadow-xl transition-all duration-300">
+                        <!-- Right Card -->
+                        <div class="w-full lg:w-1/3 bg-card-theme border border-border-theme p-10 rounded-3xl lg:rounded-l-none shadow-sm relative z-10 hover:shadow-xl transition-all duration-300">
                             <div class="text-secondary font-black uppercase tracking-widest text-xs mb-4 text-center lg:text-left">Subscribe & Save 25%</div>
-                            <h3 class="text-3xl font-black text-heading-theme mb-2 text-center lg:text-left">The Vanguard</h3>
-                            <p class="text-body-theme text-sm font-medium mb-8 min-h-[40px] text-center lg:text-left">The ultimate bulk supply for elite regimens. Billed quarterly.</p>
+                            <h3 class="text-3xl font-black text-text-heading mb-2 text-center lg:text-left">The Vanguard</h3>
+                            <p class="text-text-main text-sm font-medium mb-8 min-h-[40px] text-center lg:text-left">The ultimate bulk supply for elite regimens. Billed quarterly.</p>
                             
-                            <div class="flex items-baseline justify-center lg:justify-start gap-2 mb-8 border-b border-theme pb-8">
-                                <span class="text-5xl font-black text-heading-theme">$110</span>
-                                <span class="text-body-theme font-bold">/quarter</span>
+                            <div class="flex items-baseline justify-center lg:justify-start gap-2 mb-8 border-b border-border-theme pb-8">
+                                <span class="text-5xl font-black text-text-heading">$110</span>
+                                <span class="text-text-main font-bold">/quarter</span>
                             </div>
                             
                             <ul class="space-y-4 mb-10">
-                                <li class="flex items-center gap-3 text-sm font-medium text-body-theme">
+                                <li class="flex items-center gap-3 text-sm font-medium text-text-main">
                                     <i class="fas fa-check text-secondary"></i> 3x Matrix Isolate (Delivered Quarterly)
                                 </li>
-                                <li class="flex items-center gap-3 text-sm font-medium text-body-theme">
+                                <li class="flex items-center gap-3 text-sm font-medium text-text-main">
                                     <i class="fas fa-check text-secondary"></i> Free Priority Shipping
                                 </li>
-                                <li class="flex items-center gap-3 text-sm font-medium text-body-theme">
-                                    <i class="fas fa-check text-secondary"></i> Free Shaker + Premium Merch Item
+                                <li class="flex items-center gap-3 text-sm font-medium text-text-main">
+                                    <i class="fas fa-check text-secondary"></i> Free Premium Merch Item
                                 </li>
-                                <li class="flex items-center gap-3 text-sm font-medium text-body-theme">
-                                    <i class="fas fa-check text-secondary"></i> VIP Access to New Flavor Drops
+                                <li class="flex items-center gap-3 text-sm font-medium text-text-main">
+                                    <i class="fas fa-check text-secondary"></i> VIP Access to Flavor Drops
                                 </li>
                             </ul>
                             
-                            <button class="w-full bg-theme-alt text-heading-theme hover:bg-primary hover:text-white border border-theme hover:border-primary px-6 py-4 rounded-xl font-black uppercase tracking-widest text-xs transition-colors">
+                            <button class="w-full bg-theme-alt text-text-heading hover:bg-primary hover:text-white border border-border-theme hover:border-primary px-6 py-4 rounded-xl font-black uppercase tracking-widest text-xs transition-colors">
                                 Start Vanguard Plan
                             </button>
                         </div>
@@ -443,90 +443,90 @@
                 <div class="container mx-auto px-4 max-w-7xl">
                     <div class="text-center mb-16">
                         <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">The Hive Privileges</span>
-                        <h2 class="text-4xl md:text-5xl font-black text-heading-theme mb-6">More Than Just Fuel</h2>
+                        <h2 class="text-4xl md:text-5xl font-black text-text-heading mb-6 text-center">More Than Just Fuel</h2>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                         <div class="text-center">
-                            <div class="w-20 h-20 mx-auto bg-card-theme border border-theme rounded-2xl flex items-center justify-center text-primary text-3xl mb-6 shadow-sm">
+                            <div class="w-20 h-20 mx-auto bg-card-theme border border-border-theme rounded-2xl flex items-center justify-center text-primary text-3xl mb-6 shadow-sm">
                                 <i class="fas fa-truck-fast"></i>
                             </div>
-                            <h3 class="text-xl font-black text-heading-theme mb-3">Zero Shipping Fees</h3>
-                            <p class="text-body-theme text-sm font-medium leading-relaxed">Subscribers never pay for domestic shipping. Your monthly fuel drops are prioritized and expedited automatically.</p>
+                            <h3 class="text-xl font-black text-text-heading mb-3">Zero Shipping Fees</h3>
+                            <p class="text-text-main text-sm font-medium leading-relaxed">Free domestic shipping. Priority delivery. Your fuel arrives when you need it.</p>
                         </div>
 
                         <div class="text-center">
-                            <div class="w-20 h-20 mx-auto bg-card-theme border border-theme rounded-2xl flex items-center justify-center text-secondary text-3xl mb-6 shadow-sm">
+                            <div class="w-20 h-20 mx-auto bg-card-theme border border-border-theme rounded-2xl flex items-center justify-center text-secondary text-3xl mb-6 shadow-sm">
                                 <i class="fas fa-pause-circle"></i>
                             </div>
-                            <h3 class="text-xl font-black text-heading-theme mb-3">Total Control</h3>
-                            <p class="text-body-theme text-sm font-medium leading-relaxed">Traveling? Injured? Pause, skip, or cancel your subscription at any time directly from your dashboard with zero friction.</p>
+                            <h3 class="text-xl font-black text-text-heading mb-3">Total Control</h3>
+                            <p class="text-text-main text-sm font-medium leading-relaxed">Pause, skip, or cancel anytime. Total command over your regimen with zero friction.</p>
                         </div>
 
                         <div class="text-center">
-                            <div class="w-20 h-20 mx-auto bg-card-theme border border-theme rounded-2xl flex items-center justify-center text-primary text-3xl mb-6 shadow-sm">
+                            <div class="w-20 h-20 mx-auto bg-card-theme border border-border-theme rounded-2xl flex items-center justify-center text-primary text-3xl mb-6 shadow-sm">
                                 <i class="fas fa-unlock-alt"></i>
                             </div>
-                            <h3 class="text-xl font-black text-heading-theme mb-3">Vault Access</h3>
-                            <p class="text-body-theme text-sm font-medium leading-relaxed">Active subscribers unlock the Pro Recipe Vault, custom macro calculators, and get 48-hour early access to new product drops.</p>
+                            <h3 class="text-xl font-black text-text-heading mb-3">Vault Access</h3>
+                            <p class="text-text-main text-sm font-medium leading-relaxed">Unlock the Pro Recipe Vault, macro calculators, and 48-hour early access to drops.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="py-24 bg-theme-alt relative border-y border-theme">
+            <section class="py-24 bg-theme-alt relative border-y border-border-theme">
                 <div class="container mx-auto px-4 max-w-4xl">
                     <div class="text-center mb-16">
                         <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">FAQ</span>
-                        <h2 class="text-4xl md:text-5xl font-black text-heading-theme mb-4">Logistics & Billing</h2>
-                        <p class="text-body-theme text-lg font-medium">Everything you need to know about the subscription matrix.</p>
+                        <h2 class="text-4xl md:text-5xl font-black text-text-heading mb-6 text-center">Logistics & Billing</h2>
+                        <p class="text-text-main text-lg font-medium">Everything you need to know about the subscription matrix.</p>
                     </div>
 
                     <div class="space-y-4">
-                        <details class="bg-card-theme border border-theme rounded-2xl group overflow-hidden shadow-sm">
-                            <summary class="flex justify-between items-center font-black cursor-pointer p-6 list-none text-lg text-heading-theme transition-colors hover:text-primary">
+                        <details class="bg-card-theme border border-border-theme rounded-2xl group overflow-hidden shadow-sm">
+                            <summary class="flex justify-between items-center font-black cursor-pointer p-6 list-none text-lg text-text-heading transition-colors hover:text-primary">
                                 When does my card get charged?
                                 <span class="transition group-open:rotate-180">
                                     <i class="fas fa-chevron-down text-primary"></i>
                                 </span>
                             </summary>
-                            <div class="text-body-theme text-sm font-medium leading-relaxed px-6 pb-6 pt-2 border-t border-theme/50 mx-6">
+                            <div class="text-text-main text-sm font-medium leading-relaxed px-6 pb-6 pt-2 border-t border-border-theme/50 mx-6">
                                 Your card is charged immediately for the first order, and then every 30 days (or 90 days for Vanguard) from that initial date.
                             </div>
                         </details>
 
-                        <details class="bg-card-theme border border-theme rounded-2xl group overflow-hidden shadow-sm">
-                            <summary class="flex justify-between items-center font-black cursor-pointer p-6 list-none text-lg text-heading-theme transition-colors hover:text-primary">
+                        <details class="bg-card-theme border border-border-theme rounded-2xl group overflow-hidden shadow-sm">
+                            <summary class="flex justify-between items-center font-black cursor-pointer p-6 list-none text-lg text-text-heading transition-colors hover:text-primary">
                                 Can I change my flavor?
                                 <span class="transition group-open:rotate-180">
                                     <i class="fas fa-chevron-down text-primary"></i>
                                 </span>
                             </summary>
-                            <div class="text-body-theme text-sm font-medium leading-relaxed px-6 pb-6 pt-2 border-t border-theme/50 mx-6">
+                            <div class="text-text-main text-sm font-medium leading-relaxed px-6 pb-6 pt-2 border-t border-border-theme/50 mx-6">
                                 Absolutely. Log into your partner portal up to 48 hours before your next billing cycle to swap flavors or add items to your loadout.
                             </div>
                         </details>
 
-                        <details class="bg-card-theme border border-theme rounded-2xl group overflow-hidden shadow-sm">
-                            <summary class="flex justify-between items-center font-black cursor-pointer p-6 list-none text-lg text-heading-theme transition-colors hover:text-primary">
+                        <details class="bg-card-theme border border-border-theme rounded-2xl group overflow-hidden shadow-sm">
+                            <summary class="flex justify-between items-center font-black cursor-pointer p-6 list-none text-lg text-text-heading transition-colors hover:text-primary">
                                 Is it hard to cancel?
                                 <span class="transition group-open:rotate-180">
                                     <i class="fas fa-chevron-down text-primary"></i>
                                 </span>
                             </summary>
-                            <div class="text-body-theme text-sm font-medium leading-relaxed px-6 pb-6 pt-2 border-t border-theme/50 mx-6">
+                            <div class="text-text-main text-sm font-medium leading-relaxed px-6 pb-6 pt-2 border-t border-border-theme/50 mx-6">
                                 No. We hate trap subscriptions. You can cancel with two clicks inside your dashboard. No phone calls required.
                             </div>
                         </details>
 
-                        <details class="bg-card-theme border border-theme rounded-2xl group overflow-hidden shadow-sm">
-                            <summary class="flex justify-between items-center font-black cursor-pointer p-6 list-none text-lg text-heading-theme transition-colors hover:text-primary">
+                        <details class="bg-card-theme border border-border-theme rounded-2xl group overflow-hidden shadow-sm">
+                            <summary class="flex justify-between items-center font-black cursor-pointer p-6 list-none text-lg text-text-heading transition-colors hover:text-primary">
                                 Do you ship internationally?
                                 <span class="transition group-open:rotate-180">
                                     <i class="fas fa-chevron-down text-primary"></i>
                                 </span>
                             </summary>
-                            <div class="text-body-theme text-sm font-medium leading-relaxed px-6 pb-6 pt-2 border-t border-theme/50 mx-6">
+                            <div class="text-text-main text-sm font-medium leading-relaxed px-6 pb-6 pt-2 border-t border-border-theme/50 mx-6">
                                 Currently, we offer subscriptions in North America and select EU countries. Check our shipping policy for the full list.
                             </div>
                         </details>
@@ -534,21 +534,22 @@
                 </div>
             </section>
 
-            <section class="py-32 bg-base relative text-center flex items-center justify-center overflow-hidden border-t border-theme">
+            <!-- Permanently Dark Guarantee Section -->
+            <section class="py-32 bg-dark-base relative text-center flex items-center justify-center overflow-hidden border-t border-dark-border">
                 <div class="absolute inset-0 z-0">
-                    <img src="Images/Join The Hive.jpg" alt="Join The Hive Background" class="w-full h-full object-cover filter contrast-125 opacity-10 mix-blend-luminosity">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80" alt="Join The Hive Background" class="w-full h-full object-cover filter contrast-125 opacity-10 mix-blend-luminosity">
                 </div>
                 
                 <div class="container mx-auto px-4 max-w-3xl relative z-10">
-                    <div class="w-20 h-20 mx-auto bg-card-theme border-2 border-primary rounded-full flex items-center justify-center text-primary text-3xl mb-8 shadow-[0_0_30px_rgba(246,173,85,0.2)]">
+                    <div class="w-20 h-20 mx-auto bg-dark-surface border-2 border-primary rounded-full flex items-center justify-center text-primary text-3xl mb-8 shadow-[0_0_30px_rgba(var(--color-primary)/0.2)]">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">Our Guarantee</span>
-                    <h2 class="text-4xl md:text-6xl font-black text-white mb-6">30 Days. Zero Risk.</h2>
+                    <h2 class="text-4xl md:text-6xl font-black text-white mb-6 text-center">30 Days. Zero Risk.</h2>
                     <p class="text-gray-400 text-lg md:text-xl font-medium mb-10 leading-relaxed">
-                        We are confident this is the cleanest, most effective protein matrix on the market. If you don't feel the difference in your digestion and recovery within 30 days, we'll refund your entire first order. No questions asked.
+                        The cleanest protein matrix on earth. If you don't feel superior recovery in 30 days, get a full refund. Zero risk.
                     </p>
-                    <a href="#plans" class="inline-flex items-center justify-center bg-primary text-white border-2 border-primary hover:border-white px-12 py-5 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-white hover:text-primary transition-all shadow-[0_0_20px_rgba(246,173,85,0.4)] no-underline transform hover:scale-105">
+                    <a href="#plans" class="inline-flex items-center justify-center bg-primary text-white border-2 border-primary hover:border-white px-12 py-5 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-white hover:text-primary transition-all shadow-[0_0_20px_rgba(var(--color-primary)/0.4)] no-underline transform hover:scale-105">
                         Secure Your Plan
                     </a>
                 </div>
@@ -556,7 +557,8 @@
 
         </main>
 
-        <footer class="bg-[#111111] py-12 md:py-16 shrink-0 relative border-t border-white/10">
+        <!-- Footer (Permanently Dark) -->
+        <footer class="bg-dark-base py-12 md:py-16 shrink-0 relative border-t border-dark-border">
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
                     <div class="text-center sm:text-left">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="dark">
+<html lang="en" dir="ltr" data-theme="dark" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,27 +16,22 @@
     
     <script>
         tailwind.config = {
-            darkMode: ['class', '[data-theme="dark"]'],
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        // NutriBug Theme Colors
-                        primary: '#F6AD55',   // Honey Yellow
-                        secondary: '#E6D3A3', // Warm Sand
-                        base: '#1A1A1A',      // Rich Black
-                        cream: '#FFFFFF',     // Pure White
-                        warmgray: '#9CA3AF',  // Gray for supportive text
-                        charcoal: '#1A1A1A',  // Rich Black
-                        'card-dark': '#2A2A2A',// Card Dark
-                        bg: {
-                            DEFAULT: '#FFFFFF', // Light mode bg
-                            alt: '#F3F4F6',     // Light mode alt bg
-                            dark: '#1A1A1A',    // Dark mode bg (Base)
-                            'dark-alt': '#222222' // Dark mode alt
-                        }
+                        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+                        'theme-main': 'rgb(var(--color-bg-main) / <alpha-value>)',
+                        'theme-alt': 'rgb(var(--color-bg-alt) / <alpha-value>)',
+                        'card-theme': 'rgb(var(--color-card) / <alpha-value>)',
+                        'text-main': 'rgb(var(--color-text-main) / <alpha-value>)',
+                        'text-heading': 'rgb(var(--color-text-heading) / <alpha-value>)',
+                        'border-theme': 'rgb(var(--color-border) / <alpha-value>)',
+                        'navbar-bg': 'rgb(var(--color-navbar) / <alpha-value>)',
                     },
                     animation: {
                         'float': 'float 6s infinite ease-in-out',
@@ -48,6 +43,32 @@
     </script>
     
     <style>
+        :root {
+            /* Light Mode Variables - Darker for higher contrast */
+            --color-primary: 217 119 6;    /* Dark Amber */
+            --color-secondary: 180 83 9;   /* Darker Warm Tone */
+            --color-bg-main: 255 255 255;  /* Pure White */
+            --color-bg-alt: 243 244 246;   /* Light Gray */
+            --color-card: 255 255 255;     /* Pure White */
+            --color-text-main: 26 26 26;   /* Near Black */
+            --color-text-heading: 17 17 17;/* True Black */
+            --color-navbar: 255 255 255;   /* Pure White */
+            --color-border: 229 231 235;   /* Gray 200 */
+        }
+        
+        [data-theme="dark"] {
+            /* Dark Mode Variables - Strictly Black/Dark Grey */
+            --color-primary: 246 173 85;   /* Honey Yellow */
+            --color-secondary: 230 211 163;/* Warm Sand */
+            --color-bg-main: 18 18 18;     /* Dark Grey / Black */
+            --color-bg-alt: 26 26 26;      /* Rich Black */
+            --color-card: 34 34 34;        /* Dark Card */
+            --color-text-main: 229 231 235;/* Light Gray */
+            --color-text-heading: 255 255 255; /* White */
+            --color-navbar: 18 18 18;      /* Dark Grey / Black */
+            --color-border: 51 51 51;      /* Dark Border */
+        }
+
         /* Base Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
@@ -65,11 +86,11 @@
 
         .fade-in {
             animation: fadeIn 0.8s ease forwards;
-            opacity: 0; /* Start hidden */
+            opacity: 0;
             animation-fill-mode: forwards;
         }
 
-        /* Scrollbar aesthetics matching NutriBug */
+        /* Custom Scrollbar */
         body::-webkit-scrollbar {
             width: 8px;
         }
@@ -77,22 +98,22 @@
             background: transparent;
         }
         body::-webkit-scrollbar-thumb {
-            background-color: #E6D3A3; /* Secondary */
+            background-color: rgb(var(--color-secondary));
             border-radius: 20px;
         }
-        .dark body::-webkit-scrollbar-thumb {
-            background-color: #F6AD55; /* Primary */
-            border: 1px solid #2A2A2A;
+        [data-theme="dark"] body::-webkit-scrollbar-thumb {
+            background-color: rgb(var(--color-primary));
+            border: 1px solid rgb(var(--color-card));
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col relative bg-bg dark:bg-bg-dark text-base dark:text-cream transition-colors duration-300 overflow-x-hidden m-0 p-0 antialiased">
+<body class="min-h-screen flex flex-col relative bg-theme-main text-text-main transition-colors duration-300 overflow-x-hidden m-0 p-0 antialiased">
 
     <div class="fixed top-6 right-6 z-50 flex items-center gap-2 lg:gap-3 shrink-0">
-        <button id="themeToggle" class="w-10 h-10 bg-bg-alt dark:bg-card-dark rounded-lg flex items-center justify-center text-base dark:text-cream transition-all duration-300 hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white shrink-0 border border-gray-200 dark:border-gray-800 cursor-pointer shadow-sm" title="Toggle Dark Mode">
+        <button id="themeToggle" class="w-10 h-10 bg-theme-alt rounded-lg flex items-center justify-center text-text-heading transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border border-border-theme cursor-pointer shadow-sm" title="Toggle Dark Mode">
             <i class="fas fa-sun" id="theme-icon"></i>
         </button>
-        <button id="rtlToggle" class="w-10 h-10 bg-bg-alt dark:bg-card-dark rounded-lg flex items-center justify-center text-base dark:text-cream transition-all duration-300 hover:bg-primary dark:hover:bg-primary hover:text-white dark:hover:text-white shrink-0 border border-gray-200 dark:border-gray-800 cursor-pointer shadow-sm" title="Toggle RTL">
+        <button id="rtlToggle" class="w-10 h-10 bg-theme-alt rounded-lg flex items-center justify-center text-text-heading transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border border-border-theme cursor-pointer shadow-sm" title="Toggle RTL">
             <i class="fas fa-exchange-alt"></i>
         </button>
     </div>
@@ -104,7 +125,7 @@
                 <div class="relative w-16 h-16 bg-black rounded-2xl flex items-center justify-center shrink-0 shadow-lg border-2 border-primary overflow-hidden mb-3">
                     <i class="fas fa-bug text-white text-3xl transform hover:scale-110 transition-transform duration-300"></i>
                 </div>
-                <h3 class="text-2xl font-black text-base dark:text-white tracking-tight">Nutri<span class="text-primary">Bug</span></h3>
+                <h3 class="text-2xl font-black text-text-heading tracking-tight">Nutri<span class="text-primary">Bug</span></h3>
             </div>
 
             <div class="float-animation fade-in relative py-4" style="animation-delay: 0.2s;">
@@ -112,50 +133,50 @@
                     404
                 </h1>
                 
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-base/5 dark:text-white/5 pointer-events-none z-[-1]">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-text-main opacity-5 pointer-events-none z-[-1]">
                     <i class="fas fa-spider text-[10rem] md:text-[14rem]"></i>
                 </div>
             </div>
 
-            <h2 class="text-3xl md:text-5xl font-black mt-2 mb-4 fade-in text-base dark:text-white" style="animation-delay: 0.3s;">
+            <h2 class="text-3xl md:text-5xl font-black mt-2 mb-4 fade-in text-text-heading" style="animation-delay: 0.3s;">
                 Matrix Disconnected!
             </h2>
 
-            <p class="text-lg text-base dark:text-warmgray mb-10 fade-in max-w-md mx-auto leading-relaxed font-medium" style="animation-delay: 0.4s;">
+            <p class="text-lg text-text-main opacity-80 mb-10 fade-in max-w-md mx-auto leading-relaxed font-medium" style="animation-delay: 0.4s;">
                 We searched the entire vertical farm, but we couldn't find the page you're looking for. It might have been synthesized or moved to a different sector.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in" style="animation-delay: 0.5s;">
-                <a href="index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-primary hover:bg-secondary dark:hover:bg-white dark:hover:text-primary text-white font-bold px-8 py-3.5 rounded-xl transition-all transform hover:-translate-y-1 shadow-[0_0_15px_rgba(246,173,85,0.4)] hover:shadow-[0_0_25px_rgba(246,173,85,0.6)] text-sm border border-transparent">
+                <a href="index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-primary hover:bg-secondary text-white font-bold px-8 py-3.5 rounded-xl transition-all transform hover:-translate-y-1 shadow-lg shadow-primary/40 hover:shadow-xl hover:shadow-primary/60 text-sm border border-transparent">
                     <i class="fas fa-home"></i>
                     <span>Return to Base</span>
                 </a>
 
-                <a href="contact.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-bg-alt dark:bg-card-dark hover:bg-gray-200 dark:hover:bg-primary text-base dark:text-cream font-bold px-8 py-3.5 rounded-xl transition-all transform hover:-translate-y-1 shadow-lg border border-gray-300 dark:border-gray-800 text-sm group">
+                <a href="contact.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-theme-alt hover:bg-primary text-text-heading hover:text-white font-bold px-8 py-3.5 rounded-xl transition-all transform hover:-translate-y-1 shadow-lg border border-border-theme text-sm group">
                     <i class="fas fa-headset text-primary group-hover:scale-110 group-hover:text-white transition-all"></i>
                     <span>Contact Support</span>
                 </a>
             </div>
 
-            <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800/50 fade-in w-full max-w-lg mx-auto" style="animation-delay: 0.6s;">
-                <p class="text-xs font-bold uppercase tracking-widest text-base dark:text-warmgray mb-6">Or access these active grids</p>
+            <div class="mt-16 pt-8 border-t border-border-theme fade-in w-full max-w-lg mx-auto" style="animation-delay: 0.6s;">
+                <p class="text-xs font-bold uppercase tracking-widest text-text-main opacity-80 mb-6">Or access these active grids</p>
                 
                 <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-sm font-semibold">
-                    <a href="products.html" class="flex items-center gap-2 text-base dark:text-cream hover:text-primary dark:hover:text-primary transition-colors group">
+                    <a href="products.html" class="flex items-center gap-2 text-text-heading hover:text-primary transition-colors group">
                         <span class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors text-primary">
                             <i class="fas fa-jar text-xs"></i>
                         </span>
                         Products
                     </a>
                     
-                    <a href="sustainability.html" class="flex items-center gap-2 text-base dark:text-cream hover:text-primary dark:hover:text-primary transition-colors group">
+                    <a href="sustainability.html" class="flex items-center gap-2 text-text-heading hover:text-primary transition-colors group">
                         <span class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors text-primary">
                             <i class="fas fa-leaf text-xs"></i>
                         </span>
                         Sustainability
                     </a>
                     
-                    <a href="faq.html" class="flex items-center gap-2 text-base dark:text-cream hover:text-primary dark:hover:text-primary transition-colors group">
+                    <a href="faq.html" class="flex items-center gap-2 text-text-heading hover:text-primary transition-colors group">
                         <span class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors text-primary">
                             <i class="fas fa-question text-xs"></i>
                         </span>
@@ -167,12 +188,12 @@
         </div>
     </div>
     
-    <div class="py-6 text-center text-xs text-base dark:text-warmgray font-medium fade-in" style="animation-delay: 0.8s;">
+    <div class="py-6 text-center text-xs text-text-main opacity-80 font-medium fade-in" style="animation-delay: 0.8s;">
         &copy; 2026 NutriBug. Built for the Future.
     </div>
 
     <div class="absolute top-0 left-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 dark:bg-secondary/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
     <script>
         const htmlElement = document.documentElement;
@@ -194,7 +215,7 @@
             // Sync the icon
             const themeIcon = document.getElementById('theme-icon');
             if (themeIcon) {
-                themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                themeIcon.className = isDark ? 'fas fa-sun text-sm' : 'fas fa-moon text-sm';
             }
         }
 
@@ -207,11 +228,11 @@
         if (savedTheme === 'dark') {
             htmlElement.classList.add("dark");
             htmlElement.setAttribute('data-theme', 'dark');
-            if (themeIcon) themeIcon.className = 'fas fa-sun';
+            if (themeIcon) themeIcon.className = 'fas fa-sun text-sm';
         } else {
             htmlElement.classList.remove("dark");
             htmlElement.setAttribute('data-theme', 'light');
-            if (themeIcon) themeIcon.className = 'fas fa-moon';
+            if (themeIcon) themeIcon.className = 'fas fa-moon text-sm';
         }
 
         // ✅ RTL TOGGLE LOGIC

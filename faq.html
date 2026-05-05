@@ -18,13 +18,20 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#F6AD55',   // Honey Yellow
-                        secondary: '#E6D3A3', // Warm Sand
-                        base: '#1A1A1A',      // Rich Black
-                        cream: '#FFFFFF',     // Pure White
-                        warmgray: '#9CA3AF',
-                        charcoal: '#1A1A1A',  // Rich Black
-                        'card-dark': '#2A2A2A'// Dark Card
+                        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+                        'theme-main': 'rgb(var(--color-bg-main) / <alpha-value>)',
+                        'theme-alt': 'rgb(var(--color-bg-alt) / <alpha-value>)',
+                        'card-theme': 'rgb(var(--color-card) / <alpha-value>)',
+                        'text-main': 'rgb(var(--color-text-main) / <alpha-value>)',
+                        'text-heading': 'rgb(var(--color-text-heading) / <alpha-value>)',
+                        'border-theme': 'rgb(var(--color-border) / <alpha-value>)',
+                        'navbar-bg': 'rgb(var(--color-navbar) / <alpha-value>)',
+                        
+                        /* Permanent Dark Theme Colors for Hero & Footer */
+                        'dark-base': '#121212',
+                        'dark-surface': '#1A1A1A',
+                        'dark-border': '#333333',
                     },
                     animation: {
                         'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
@@ -45,29 +52,29 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
         :root {
-            --primary-color: #F6AD55; 
-            --secondary-color: #E6D3A3; 
-            --bg-color: #FFFFFF; 
-            --bg-alt: #F3F4F6; 
-            --card-bg: #FFFFFF;    
-            --text-main: #1A1A1A; 
-            --text-heading: #1A1A1A; 
-            --navbar-bg: #FFFFFF; 
-            --nav-text: #1A1A1A;
-            --border-color: #E5E7EB; 
+            /* Light Mode Variables - Darker for higher contrast */
+            --color-primary: 217 119 6;    /* Dark Amber */
+            --color-secondary: 180 83 9;   /* Darker Warm Tone */
+            --color-bg-main: 255 255 255;  /* Pure White */
+            --color-bg-alt: 243 244 246;   /* Light Gray */
+            --color-card: 255 255 255;     /* Pure White */
+            --color-text-main: 26 26 26;   /* Near Black */
+            --color-text-heading: 17 17 17;/* True Black */
+            --color-navbar: 255 255 255;   /* Pure White */
+            --color-border: 229 231 235;   /* Gray 200 */
         }
         
         [data-theme="dark"] {
-            --primary-color: #F6AD55;   
-            --secondary-color: #E6D3A3; 
-            --bg-color: #1A1A1A;        
-            --bg-alt: #222222;          
-            --card-bg: #2A2A2A;         
-            --text-main: #FFFFFF;       
-            --text-heading: #FFFFFF;    
-            --navbar-bg: #1A1A1A;       
-            --nav-text: #FFFFFF;
-            --border-color: #333333;    
+            /* Dark Mode Variables - Strictly Black/Dark Grey */
+            --color-primary: 246 173 85;   /* Honey Yellow */
+            --color-secondary: 230 211 163;/* Warm Sand */
+            --color-bg-main: 18 18 18;     /* Dark Grey / Black */
+            --color-bg-alt: 26 26 26;      /* Rich Black */
+            --color-card: 34 34 34;        /* Dark Card */
+            --color-text-main: 229 231 235;/* Light Gray */
+            --color-text-heading: 255 255 255; /* White */
+            --color-navbar: 18 18 18;      /* Dark Grey / Black */
+            --color-border: 51 51 51;      /* Dark Border */
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -83,27 +90,16 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: rgb(var(--color-bg-main));
+            color: rgb(var(--color-text-main));
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
-        p, label { color: var(--text-main); }
-        
-        .bg-theme-main { background-color: var(--bg-color); }
-        .bg-theme-alt { background-color: var(--bg-alt); }
-        .bg-card-theme { background-color: var(--card-bg); }
-        
-        .text-heading-theme { color: var(--text-heading); }
-        .text-body-theme { color: var(--text-main); }
-        .border-theme { border-color: var(--border-color); }
-        
         /* Navbar Styles */
         .navbar-container {
-            background-color: var(--navbar-bg);
+            background-color: rgb(var(--color-navbar));
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgb(var(--color-border));
             transition: background-color 0.3s ease, border-color 0.3s ease;
             height: 70px;
             display: flex;
@@ -111,7 +107,7 @@
         }
         
         .nav-link {
-            color: var(--nav-text); 
+            color: rgb(var(--color-text-main)); 
             padding: 8px 10px; 
             transition: all 0.3s ease;
             position: relative;
@@ -125,16 +121,16 @@
             text-decoration: none;
         }
         
-        .nav-link:hover { color: var(--primary-color); }
-        .nav-link.active { color: var(--primary-color); font-weight: 600; }
+        .nav-link:hover { color: rgb(var(--color-primary)); }
+        .nav-link.active { color: rgb(var(--color-primary)); font-weight: 600; }
         
         .dropdown { position: relative; }
         .dropdown-menu {
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: var(--card-bg); 
-            border: 1px solid var(--border-color);
+            background-color: rgb(var(--color-card)); 
+            border: 1px solid rgb(var(--color-border));
             border-radius: 8px;
             min-width: 160px;
             opacity: 0;
@@ -151,26 +147,26 @@
             opacity: 1; visibility: visible; transform: translateY(0);
         }
         .dropdown-item {
-            display: block; padding: 12px 20px; color: var(--nav-text); 
-            transition: all 0.3s ease; border-bottom: 1px solid var(--border-color); font-size: 0.9rem;
+            display: block; padding: 12px 20px; color: rgb(var(--color-text-main)); 
+            transition: all 0.3s ease; border-bottom: 1px solid rgb(var(--color-border)); font-size: 0.9rem;
             text-decoration: none;
         }
-        .dropdown-item:hover { background-color: rgba(246, 173, 85, 0.1); color: var(--primary-color); padding-left: 25px; }
+        .dropdown-item:hover { background-color: rgb(var(--color-primary) / 0.1); color: rgb(var(--color-primary)); padding-left: 25px; }
         .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
         .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
         
         .mobile-menu {
             transform: translateX(-100%); transition: transform 0.3s ease;
-            background-color: var(--navbar-bg); color: var(--text-heading); 
+            background-color: rgb(var(--color-navbar)); color: rgb(var(--color-text-heading)); 
         }
         .mobile-menu.active { transform: translateX(0); }
         
         .mobile-dropdown-content {
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
-            padding-left: 20px; background-color: rgba(255,255,255,0.05); border-radius: 8px;
+            padding-left: 20px; background-color: rgba(128,128,128,0.05); border-radius: 8px;
         }
-        .mobile-dropdown-content a { color: var(--text-main); text-decoration: none;} 
-        .mobile-dropdown-content a:hover { color: var(--primary-color); }
+        .mobile-dropdown-content a { color: rgb(var(--color-text-main)); text-decoration: none;} 
+        .mobile-dropdown-content a:hover { color: rgb(var(--color-primary)); }
         .mobile-dropdown-content.active { max-height: 500px; margin: 5px 0; }
         
         @media (max-width: 1279px) {
@@ -192,14 +188,14 @@
         }
         .faq-btn.active .faq-icon {
             transform: rotate(45deg);
-            color: var(--primary-color);
+            color: rgb(var(--color-primary));
         }
         .faq-btn.active {
             border-bottom-color: transparent;
         }
     </style>
 </head>
-<body class="w-full overflow-x-hidden m-0 p-0 antialiased bg-theme-main text-body-theme">
+<body class="w-full overflow-x-hidden m-0 p-0 antialiased bg-theme-main text-text-main">
 
     <div class="relative w-full max-w-[1920px] mx-auto overflow-x-hidden flex flex-col min-h-screen">
         
@@ -212,7 +208,7 @@
                             <i class="fas fa-bug text-white text-lg"></i>
                         </div>
                         <div>
-                            <div class="text-xl md:text-2xl font-black text-heading-theme tracking-tight">Nutri<span class="text-primary">Bug</span></div>
+                            <div class="text-xl md:text-2xl font-black text-text-heading tracking-tight">Nutri<span class="text-primary">Bug</span></div>
                         </div>
                     </a>
                     
@@ -236,14 +232,14 @@
                     </div>
                     
                     <div class="navbar-right-desktop flex items-center gap-2 lg:gap-3 shrink-0">
-                        <button class="w-10 h-10 bg-theme-alt text-heading-theme border border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-theme-toggle-btn" title="Toggle Dark Mode">
+                        <button class="w-10 h-10 bg-theme-alt text-text-heading border border-border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-theme-toggle-btn" title="Toggle Dark Mode">
                             <i class="fas fa-moon" id="desktop-theme-icon"></i>
                         </button>
-                        <button class="w-10 h-10 bg-theme-alt text-heading-theme border border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-rtl-toggle-btn" title="Toggle RTL">
+                        <button class="w-10 h-10 bg-theme-alt text-text-heading border border-border-theme rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shrink-0 cursor-pointer shadow-sm" id="desktop-rtl-toggle-btn" title="Toggle RTL">
                             <i class="fas fa-exchange-alt"></i>
                         </button>
                         
-                        <a href="login.html" class="h-10 bg-transparent border border-theme text-heading-theme px-5 rounded-lg font-bold text-sm transition-all hover:bg-primary hover:text-base hover:border-primary shadow-sm flex items-center justify-center gap-2 shrink-0 no-underline box-border">
+                        <a href="login.html" class="h-10 bg-transparent border border-border-theme text-text-heading px-5 rounded-lg font-bold text-sm transition-all hover:bg-primary hover:text-white hover:border-primary shadow-sm flex items-center justify-center gap-2 shrink-0 no-underline box-border">
                             <i class="fas fa-sign-in-alt"></i> Login
                         </a>
                         <a href="register.html" class="h-10 bg-primary text-white px-5 rounded-lg font-bold text-sm transition-all hover:bg-white hover:text-primary shadow-lg hover:shadow-xl flex items-center justify-center gap-2 shrink-0 border-2 border-transparent hover:border-primary no-underline box-border">
@@ -251,7 +247,7 @@
                         </a>
                     </div>
                     
-                    <button id="mobile-menu-btn" class="hidden text-heading-theme cursor-pointer bg-transparent border-0 mobile-menu-button items-center justify-center h-10 w-10 group relative hover:text-primary transition-colors">
+                    <button id="mobile-menu-btn" class="hidden text-text-heading cursor-pointer bg-transparent border-0 mobile-menu-button items-center justify-center h-10 w-10 group relative hover:text-primary transition-colors">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -266,18 +262,18 @@
                             <i class="fas fa-bug text-white"></i>
                         </div>
                         <div>
-                            <div class="text-lg md:text-2xl font-black text-heading-theme tracking-tight">Nutri<span class="text-primary">Bug</span></div>
+                            <div class="text-lg md:text-2xl font-black text-text-heading tracking-tight">Nutri<span class="text-primary">Bug</span></div>
                         </div>
                     </a>
                     
-                    <div class="flex items-center bg-card-theme rounded-lg px-2 py-1 shadow-md border border-theme">
-                        <button id="mobile-theme-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
+                    <div class="flex items-center bg-card-theme rounded-lg px-2 py-1 shadow-md border border-border-theme">
+                        <button id="mobile-theme-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-text-heading flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
                             <i class="fas fa-moon" id="mobile-theme-icon"></i>
                         </button>
-                        <button id="mobile-rtl-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
+                        <button id="mobile-rtl-toggle" class="w-9 h-9 sm:w-10 sm:h-10 text-text-heading flex items-center justify-center text-base sm:text-lg transition-all hover:text-primary border-0 cursor-pointer bg-transparent">
                             <i class="fas fa-exchange-alt"></i>
                         </button>
-                        <button id="close-mobile-menu" class="w-9 h-9 sm:w-10 sm:h-10 text-heading-theme flex items-center justify-center text-xl sm:text-2xl transition-transform active:scale-90 border-0 cursor-pointer bg-transparent hover:text-primary">
+                        <button id="close-mobile-menu" class="w-9 h-9 sm:w-10 sm:h-10 text-text-heading flex items-center justify-center text-xl sm:text-2xl transition-transform active:scale-90 border-0 cursor-pointer bg-transparent hover:text-primary">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -285,9 +281,9 @@
                 
                 <div class="space-y-1">
                     <div>
-                        <button id="mobile-home-btn" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline cursor-pointer border-0 bg-transparent hover:text-primary transition-colors" onclick="toggleMobileDropdown('home-mobile')">
+                        <button id="mobile-home-btn" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline cursor-pointer border-0 bg-transparent hover:text-primary transition-colors" onclick="toggleMobileDropdown('home-mobile')">
                             <span>Home</span>
-                            <i class="fas fa-chevron-down dropdown-arrow text-warmgray"></i>
+                            <i class="fas fa-chevron-down dropdown-arrow text-gray-500"></i>
                         </button>
                         <div id="home-mobile" class="mobile-dropdown-content">
                             <a href="index.html" class="block py-2.5">Home 1</a>
@@ -295,16 +291,16 @@
                         </div>
                     </div>
                     
-                    <a href="about.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>About</span></a>
-                    <a href="products.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Products</span></a>
-                    <a href="sustainability.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Sustainability</span></a>
-                    <a href="wholesale.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Wholesale</span></a>
-                    <a href="pricing.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Pricing</span></a>
-                    <a href="faq.html" class="flex items-center justify-between w-full text-primary font-bold text-lg py-3 px-2 no-underline border-b border-theme transition-colors"><span>FAQ</span></a>
-                    <a href="contact.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 px-2 no-underline border-b border-theme hover:text-primary transition-colors"><span>Contact</span></a>
+                    <a href="about.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>About</span></a>
+                    <a href="products.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>Products</span></a>
+                    <a href="sustainability.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>Sustainability</span></a>
+                    <a href="wholesale.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>Wholesale</span></a>
+                    <a href="pricing.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>Pricing</span></a>
+                    <a href="faq.html" class="flex items-center justify-between w-full text-primary font-bold text-lg py-3 px-2 no-underline border-b border-border-theme transition-colors"><span>FAQ</span></a>
+                    <a href="contact.html" class="flex items-center justify-between w-full text-text-heading text-lg font-medium py-3 px-2 no-underline border-b border-border-theme hover:text-primary transition-colors"><span>Contact</span></a>
                     
-                    <div class="mt-8 pt-6 border-t border-theme space-y-3">
-                        <a href="login.html" class="bg-transparent border border-theme text-heading-theme w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-primary hover:text-base hover:border-primary flex items-center justify-center gap-2 no-underline">
+                    <div class="mt-8 pt-6 border-t border-border-theme space-y-3">
+                        <a href="login.html" class="bg-transparent border border-border-theme text-text-heading w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-primary hover:text-white hover:border-primary flex items-center justify-center gap-2 no-underline">
                             <i class="fas fa-sign-in-alt"></i> Login
                         </a>
                         <a href="register.html" class="bg-primary text-white w-full h-12 rounded-xl font-bold text-lg transition-all hover:bg-white hover:text-primary flex items-center justify-center gap-2 shadow-lg no-underline border-2 border-transparent hover:border-primary">
@@ -317,111 +313,112 @@
 
         <main class="w-full flex-grow">
             
-           <section class="min-h-[100dvh] w-full pt-[70px] bg-base relative overflow-hidden flex items-center justify-center text-center border-b border-white/10 box-border">
-    <div class="absolute inset-0 z-0">
-        <img src="Images/The Cost of Fuel.jpg" alt="Data Network" class="w-full h-full object-cover object-center filter contrast-125 opacity-40">
-        <div class="absolute inset-0 bg-gradient-to-t from-base via-base/50 to-transparent"></div>
-    </div>
+            <!-- Hero Section (Permanently Dark) -->
+            <section class="min-h-[100dvh] w-full pt-[70px] bg-dark-base relative overflow-hidden flex items-center justify-center text-center border-b border-white/10 box-border">
+                <div class="absolute inset-0 z-0">
+                    <img src="Images/The Cost of Fuel.jpg" alt="Data Network" class="w-full h-full object-cover object-center filter contrast-125 opacity-40">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-base via-dark-base/50 to-transparent"></div>
+                </div>
 
-    <div class="container mx-auto px-4 max-w-4xl relative z-10 py-8 sm:py-12 md:py-16 flex flex-col items-center justify-center">
-        <span class="animate-fadeInUp text-primary font-black uppercase tracking-widest text-xs sm:text-sm mb-4 md:mb-6 border-b-2 border-primary pb-2 inline-block" style="animation-delay: 0.1s;">Intelligence Base</span>
-        
-        <h1 class="animate-fadeInUp text-4xl sm:text-5xl md:text-7xl font-black text-white mb-4 md:mb-6 leading-[1.05] tracking-tight" style="animation-delay: 0.2s;">
-            Uncover the <br>
-            <span class="text-primary">Architecture.</span>
-        </h1>
-        
-        <p class="animate-fadeInUp text-base sm:text-lg md:text-xl text-gray-400 font-medium leading-relaxed mb-8 md:mb-10 max-w-2xl" style="animation-delay: 0.3s;">
-            Clear, uncompromising answers about our matrix, our science, and how we handle global logistics.
-        </p>
-        
-        <div class="animate-fadeInUp w-full max-w-lg relative" style="animation-delay: 0.4s;">
-            <input type="text" placeholder="Search the knowledge base..." class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-2xl px-6 py-4 pl-12 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium">
-            <i class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-        </div>
-    </div>
-</section>
+                <div class="container mx-auto px-4 max-w-4xl relative z-10 py-8 sm:py-12 md:py-16 flex flex-col items-center justify-center">
+                    <span class="animate-fadeInUp text-primary font-black uppercase tracking-widest text-xs sm:text-sm mb-4 md:mb-6 border-b-2 border-primary pb-2 inline-block" style="animation-delay: 0.1s;">Intelligence Base</span>
+                    
+                    <h1 class="animate-fadeInUp text-4xl sm:text-5xl md:text-7xl font-black text-white mb-4 md:mb-6 leading-[1.05] tracking-tight" style="animation-delay: 0.2s;">
+                        Uncover the <br>
+                        <span class="text-primary">Architecture.</span>
+                    </h1>
+                    
+                    <p class="animate-fadeInUp text-base sm:text-lg md:text-xl text-gray-400 font-medium leading-relaxed mb-8 md:mb-10 max-w-2xl" style="animation-delay: 0.3s;">
+                        No BS. Just facts. Understand the matrix, the science, and our flawless global logistics.
+                    </p>
+                    
+                    <div class="animate-fadeInUp w-full max-w-lg relative" style="animation-delay: 0.4s;">
+                        <input type="text" placeholder="Search the knowledge base..." class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-2xl px-6 py-4 pl-12 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium">
+                        <i class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                    </div>
+                </div>
+            </section>
 
             <section class="py-16 bg-theme-main relative z-20 -mt-10">
                 <div class="container mx-auto px-4 max-w-7xl">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         
-                        <a href="#science" class="bg-card-theme border border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
+                        <a href="#science" class="bg-card-theme border border-border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
                             <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4 group-hover:scale-110 transition-transform">
                                 <i class="fas fa-microscope"></i>
                             </div>
-                            <h3 class="text-lg font-black text-heading-theme mb-2">Science & Safety</h3>
-                            <p class="text-body-theme text-xs font-medium">Sourcing, allergies, and bio-availability.</p>
+                            <h3 class="text-lg font-black text-text-heading mb-2">Science & Safety</h3>
+                            <p class="text-text-main text-xs font-medium">Sourcing, allergies, and bio-availability.</p>
                         </a>
 
-                        <a href="#product" class="bg-card-theme border border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
+                        <a href="#product" class="bg-card-theme border border-border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
                             <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4 group-hover:scale-110 transition-transform">
                                 <i class="fas fa-jar"></i>
                             </div>
-                            <h3 class="text-lg font-black text-heading-theme mb-2">Product Anatomy</h3>
-                            <p class="text-body-theme text-xs font-medium">Flavors, mixing, and consumption guides.</p>
+                            <h3 class="text-lg font-black text-text-heading mb-2">Product Anatomy</h3>
+                            <p class="text-text-main text-xs font-medium">Flavors, mixing, and consumption guides.</p>
                         </a>
 
-                        <a href="#logistics" class="bg-card-theme border border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
+                        <a href="#logistics" class="bg-card-theme border border-border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
                             <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4 group-hover:scale-110 transition-transform">
                                 <i class="fas fa-truck-fast"></i>
                             </div>
-                            <h3 class="text-lg font-black text-heading-theme mb-2">Logistics</h3>
-                            <p class="text-body-theme text-xs font-medium">Shipping zones, tracking, and returns.</p>
+                            <h3 class="text-lg font-black text-text-heading mb-2">Logistics</h3>
+                            <p class="text-text-main text-xs font-medium">Shipping zones, tracking, and returns.</p>
                         </a>
 
-                        <a href="#subscriptions" class="bg-card-theme border border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
+                        <a href="#subscriptions" class="bg-card-theme border border-border-theme p-8 rounded-3xl shadow-lg hover:-translate-y-2 hover:border-primary transition-all duration-300 text-center no-underline group">
                             <div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl mb-4 group-hover:scale-110 transition-transform">
                                 <i class="fas fa-sync-alt"></i>
                             </div>
-                            <h3 class="text-lg font-black text-heading-theme mb-2">Subscriptions</h3>
-                            <p class="text-body-theme text-xs font-medium">Managing your monthly loadout and billing.</p>
+                            <h3 class="text-lg font-black text-text-heading mb-2">Subscriptions</h3>
+                            <p class="text-text-main text-xs font-medium">Managing your monthly loadout and billing.</p>
                         </a>
 
                     </div>
                 </div>
             </section>
 
-            <section id="science" class="py-24 bg-theme-alt relative border-t border-theme">
+            <section id="science" class="py-24 bg-theme-alt relative border-t border-border-theme">
                 <div class="container mx-auto px-4 max-w-4xl">
                     <div class="text-center mb-12">
                         <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">Protocol 01</span>
-                        <h2 class="text-3xl md:text-5xl font-black text-heading-theme">Science & Safety</h2>
+                        <h2 class="text-4xl md:text-5xl font-black text-text-heading text-center mb-6">Science & Safety</h2>
                     </div>
 
                     <div class="space-y-4">
-                        <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                        <div class="bg-card-theme border border-border-theme rounded-2xl overflow-hidden shadow-sm">
                             <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
-                                <span class="text-lg font-black text-heading-theme group-hover:text-primary transition-colors">Is it safe to consume insect protein?</span>
-                                <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                <span class="text-lg font-black text-text-heading group-hover:text-primary transition-colors">Is it safe to consume insect protein?</span>
+                                <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                             </button>
-                            <div class="faq-content bg-theme-alt/50 border-t border-theme">
-                                <p class="p-8 text-body-theme font-medium leading-relaxed">
-                                    Absolutely. Our crickets are farmed in sterile, vertical biomes specifically designed for human consumption. They are fed an organic, pre-consumer plant diet and are completely free of antibiotics and heavy metals often found in traditional meat and fish.
+                            <div class="faq-content bg-theme-alt border-t border-border-theme">
+                                <p class="p-8 text-text-main font-medium leading-relaxed">
+                                    Yes. We farm in sterile, vertical biomes. 100% organic plant diet. Zero antibiotics. Zero heavy metals. Cleaner than traditional meat.
                                 </p>
                             </div>
                         </div>
 
-                        <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                        <div class="bg-card-theme border border-border-theme rounded-2xl overflow-hidden shadow-sm">
                             <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
-                                <span class="text-lg font-black text-heading-theme group-hover:text-primary transition-colors">Are there any allergy concerns?</span>
-                                <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                <span class="text-lg font-black text-text-heading group-hover:text-primary transition-colors">Are there any allergy concerns?</span>
+                                <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                             </button>
-                            <div class="faq-content bg-theme-alt/50 border-t border-theme">
-                                <p class="p-8 text-body-theme font-medium leading-relaxed">
-                                    Yes. People with an allergy to crustacean shellfish (such as shrimp, crab, or lobster) may also be allergic to crickets. If you have a shellfish allergy, we strongly advise consulting your physician before integrating NutriBug into your loadout.
+                            <div class="faq-content bg-theme-alt border-t border-border-theme">
+                                <p class="p-8 text-text-main font-medium leading-relaxed">
+                                    Yes. If you're allergic to crustacean shellfish, you might be allergic to our matrix. Consult your physician before loading up.
                                 </p>
                             </div>
                         </div>
 
-                        <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                        <div class="bg-card-theme border border-border-theme rounded-2xl overflow-hidden shadow-sm">
                             <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
-                                <span class="text-lg font-black text-heading-theme group-hover:text-primary transition-colors">How does the amino profile compare to whey?</span>
-                                <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                <span class="text-lg font-black text-text-heading group-hover:text-primary transition-colors">How does the amino profile compare to whey?</span>
+                                <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                             </button>
-                            <div class="faq-content bg-theme-alt/50 border-t border-theme">
-                                <p class="p-8 text-body-theme font-medium leading-relaxed">
-                                    The NutriBug Matrix contains all 9 essential amino acids in quantities that rival or exceed premium whey isolates. Furthermore, it boasts superior bio-availability (PDCAAS of 0.98), meaning your body actually absorbs and utilizes the protein faster and more efficiently.
+                            <div class="faq-content bg-theme-alt border-t border-border-theme">
+                                <p class="p-8 text-text-main font-medium leading-relaxed">
+                                    It crushes whey. All 9 essential amino acids with superior bio-availability (0.98 PDCAAS). Your body absorbs this fuel faster and uses it more efficiently.
                                 </p>
                             </div>
                         </div>
@@ -429,7 +426,8 @@
                 </div>
             </section>
 
-            <section id="product" class="py-24 bg-[#111111] relative border-y border-white/10 overflow-hidden">
+            <!-- Permanently Dark Product Anatomy Section -->
+            <section id="product" class="py-24 bg-dark-base relative border-y border-white/10 overflow-hidden">
                 <div class="absolute right-0 top-0 w-1/3 h-full bg-primary/5 blur-[120px] pointer-events-none"></div>
                 <div class="container mx-auto px-4 max-w-7xl relative z-10">
                     
@@ -437,52 +435,52 @@
                         
                         <div class="relative h-[600px] rounded-[3rem] overflow-hidden hidden lg:block border border-white/10">
                             <img src="Images/powder.jpg" alt="Product Preparation" class="w-full h-full object-cover filter contrast-125 opacity-80">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#111111] to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-base to-transparent"></div>
                             <div class="absolute bottom-10 left-10">
                                 <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">Protocol 02</span>
-                                <h2 class="text-4xl font-black text-white">Product Anatomy</h2>
+                                <h2 class="text-4xl md:text-5xl font-black text-white text-left mb-6">Product Anatomy</h2>
                             </div>
                         </div>
 
                         <div class="w-full">
                             <div class="lg:hidden mb-10 text-center">
                                 <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">Protocol 02</span>
-                                <h2 class="text-3xl md:text-5xl font-black text-white">Product Anatomy</h2>
+                                <h2 class="text-4xl md:text-5xl font-black text-white text-center mb-6">Product Anatomy</h2>
                             </div>
 
                             <div class="space-y-4">
-                                <div class="bg-[#1A1A1A] border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+                                <div class="bg-dark-surface border border-white/10 rounded-2xl overflow-hidden shadow-lg">
                                     <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
                                         <span class="text-lg font-black text-white group-hover:text-primary transition-colors">Does it taste like bugs?</span>
                                         <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                                     </button>
-                                    <div class="faq-content bg-[#111111]">
+                                    <div class="faq-content bg-dark-base">
                                         <p class="p-8 text-gray-300 font-medium leading-relaxed border-t border-white/10">
-                                            Not at all. Our proprietary micro-milling process neutralizes any earthy notes. The raw powder has a very mild, slightly nutty flavor, while our flavored matrices (like Dark Cocoa) taste exactly like a premium, rich milkshake.
+                                            Zero bug taste. Our micro-milling tech neutralizes earthy notes. Flavored matrices like Dark Cocoa taste exactly like a premium milkshake.
                                         </p>
                                     </div>
                                 </div>
 
-                                <div class="bg-[#1A1A1A] border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+                                <div class="bg-dark-surface border border-white/10 rounded-2xl overflow-hidden shadow-lg">
                                     <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
                                         <span class="text-lg font-black text-white group-hover:text-primary transition-colors">How well does the powder mix?</span>
                                         <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                                     </button>
-                                    <div class="faq-content bg-[#111111]">
+                                    <div class="faq-content bg-dark-base">
                                         <p class="p-8 text-gray-300 font-medium leading-relaxed border-t border-white/10">
-                                            Perfectly. We mill the protein to 15 microns. Whether you use a standard shaker bottle or an electronic blender, the matrix dissolves smoothly into water or plant milk without chalky clumps or grit.
+                                            Flawless. Milled to 15 microns. Dissolves instantly in water or plant milk. Zero clumps. Zero grit.
                                         </p>
                                     </div>
                                 </div>
 
-                                <div class="bg-[#1A1A1A] border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+                                <div class="bg-dark-surface border border-white/10 rounded-2xl overflow-hidden shadow-lg">
                                     <button class="faq-btn w-full px-8 py-6 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
                                         <span class="text-lg font-black text-white group-hover:text-primary transition-colors">Can I bake with Matrix Isolate?</span>
                                         <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                                     </button>
-                                    <div class="faq-content bg-[#111111]">
+                                    <div class="faq-content bg-dark-base">
                                         <p class="p-8 text-gray-300 font-medium leading-relaxed border-t border-white/10">
-                                            Yes. It is highly heat-stable. It can be used to fortify pancakes, oatmeal, or homemade energy bars without losing its amino integrity or altering the moisture content drastically.
+                                            Yes. Highly heat-stable. Fortify your pancakes, oats, or energy bars without destroying the amino integrity.
                                         </p>
                                     </div>
                                 </div>
@@ -497,62 +495,62 @@
                 <div class="container mx-auto px-4 max-w-7xl">
                     <div class="text-center mb-16">
                         <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">Protocol 03</span>
-                        <h2 class="text-4xl md:text-5xl font-black text-heading-theme">Logistics & Subscriptions</h2>
+                        <h2 class="text-4xl md:text-5xl font-black text-text-heading text-center mb-6">Logistics & Subscriptions</h2>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                         
                         <div class="space-y-4">
-                            <h3 class="text-2xl font-black text-heading-theme mb-6 border-b border-theme pb-2">Shipping & Returns</h3>
+                            <h3 class="text-2xl font-black text-text-heading mb-6 border-b border-border-theme pb-2">Shipping & Returns</h3>
                             
-                            <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                            <div class="bg-card-theme border border-border-theme rounded-2xl overflow-hidden shadow-sm">
                                 <button class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
-                                    <span class="text-base font-black text-heading-theme group-hover:text-primary transition-colors">Where do you ship?</span>
-                                    <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                    <span class="text-lg font-black text-text-heading group-hover:text-primary transition-colors">Where do you ship?</span>
+                                    <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                                 </button>
-                                <div class="faq-content bg-theme-alt/50 border-t border-theme">
-                                    <p class="p-6 text-body-theme text-sm font-medium leading-relaxed">
-                                        We currently ship to all 50 US States, Canada, and select regions in the EU and UK. International shipping times vary from 5-14 business days depending on customs.
+                                <div class="faq-content bg-theme-alt border-t border-border-theme">
+                                    <p class="p-6 text-text-main text-sm font-medium leading-relaxed">
+                                        All 50 US States, Canada, and select EU/UK regions. International drops hit in 5-14 days.
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                            <div class="bg-card-theme border border-border-theme rounded-2xl overflow-hidden shadow-sm">
                                 <button class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
-                                    <span class="text-base font-black text-heading-theme group-hover:text-primary transition-colors">What is your return policy?</span>
-                                    <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                    <span class="text-lg font-black text-text-heading group-hover:text-primary transition-colors">What is your return policy?</span>
+                                    <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                                 </button>
-                                <div class="faq-content bg-theme-alt/50 border-t border-theme">
-                                    <p class="p-6 text-body-theme text-sm font-medium leading-relaxed">
-                                        We offer a 30-Day Performance Guarantee on your first order. If you aren't satisfied, contact support for a full refund. For subsequent orders, we only accept returns on unopened products within 30 days.
+                                <div class="faq-content bg-theme-alt border-t border-border-theme">
+                                    <p class="p-6 text-text-main text-sm font-medium leading-relaxed">
+                                        30-Day Performance Guarantee on your first order. Not satisfied? Full refund. Subsequent drops: unopened returns only within 30 days.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
                         <div id="subscriptions" class="space-y-4 mt-8 lg:mt-0">
-                            <h3 class="text-2xl font-black text-heading-theme mb-6 border-b border-theme pb-2">Hive Subscriptions</h3>
+                            <h3 class="text-2xl font-black text-text-heading mb-6 border-b border-border-theme pb-2">Hive Subscriptions</h3>
                             
-                            <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                            <div class="bg-card-theme border border-border-theme rounded-2xl overflow-hidden shadow-sm">
                                 <button class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
-                                    <span class="text-base font-black text-heading-theme group-hover:text-primary transition-colors">Can I pause or cancel my plan?</span>
-                                    <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                    <span class="text-lg font-black text-text-heading group-hover:text-primary transition-colors">Can I pause or cancel my plan?</span>
+                                    <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                                 </button>
-                                <div class="faq-content bg-theme-alt/50 border-t border-theme">
-                                    <p class="p-6 text-body-theme text-sm font-medium leading-relaxed">
-                                        Yes. There are no trap-doors. You can pause, skip a delivery, or cancel your subscription entirely at any time directly through your user dashboard.
+                                <div class="faq-content bg-theme-alt border-t border-border-theme">
+                                    <p class="p-6 text-text-main text-sm font-medium leading-relaxed">
+                                        Yes. Zero trap-doors. Pause, skip, or cancel anytime from your dashboard with two clicks.
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm">
+                            <div class="bg-card-theme border border-border-theme rounded-2xl overflow-hidden shadow-sm">
                                 <button class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between bg-transparent border-none cursor-pointer group" onclick="toggleFAQ(this)">
-                                    <span class="text-base font-black text-heading-theme group-hover:text-primary transition-colors">How do I change my flavors?</span>
-                                    <i class="fas fa-plus faq-icon text-warmgray transition-transform duration-300"></i>
+                                    <span class="text-lg font-black text-text-heading group-hover:text-primary transition-colors">How do I change my flavors?</span>
+                                    <i class="fas fa-plus faq-icon text-gray-500 transition-transform duration-300"></i>
                                 </button>
-                                <div class="faq-content bg-theme-alt/50 border-t border-theme">
-                                    <p class="p-6 text-body-theme text-sm font-medium leading-relaxed">
-                                        Log into your account and navigate to "Manage Subscriptions." You can swap out flavors or change product types up to 48 hours before your next scheduled billing date.
+                                <div class="faq-content bg-theme-alt border-t border-border-theme">
+                                    <p class="p-6 text-text-main text-sm font-medium leading-relaxed">
+                                        Log in. Hit 'Manage Subscriptions'. Swap flavors or change product types up to 48 hours before your next drop.
                                     </p>
                                 </div>
                             </div>
@@ -562,22 +560,22 @@
                 </div>
             </section>
 
-            <section class="py-24 bg-primary relative text-center border-t border-theme">
+            <section class="py-24 bg-primary relative text-center border-t border-border-theme">
                 <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at center, #1A1A1A 1px, transparent 1px); background-size: 20px 20px;"></div>
                 
                 <div class="container mx-auto px-4 max-w-3xl relative z-10">
-                    <div class="w-20 h-20 mx-auto bg-base rounded-2xl flex items-center justify-center text-primary text-3xl mb-8 shadow-xl transform rotate-3">
+                    <div class="w-20 h-20 mx-auto bg-dark-base rounded-2xl flex items-center justify-center text-primary text-3xl mb-8 shadow-xl transform rotate-3">
                         <i class="fas fa-headset"></i>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-black text-base mb-6">System Overload?</h2>
-                    <p class="text-[#333333] text-lg font-bold mb-10">
-                        If your question wasn't answered in the matrix above, patch through to our support team. We generally respond within 2-4 operational hours.
+                    <h2 class="text-4xl md:text-5xl font-black text-dark-base text-center mb-6">System Overload?</h2>
+                    <p class="text-dark-base text-lg font-bold mb-10 opacity-90">
+                        Question missing? Patch through to our support team. Expect a response in 2-4 hours. We don't sleep.
                     </p>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="contact.html" class="inline-flex items-center justify-center bg-base text-white px-10 py-4 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-white hover:text-base transition-all shadow-xl no-underline border-2 border-base">
+                        <a href="contact.html" class="inline-flex items-center justify-center bg-dark-base text-white px-10 py-4 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-white hover:text-dark-base transition-all shadow-xl no-underline border-2 border-dark-base hover:border-dark-base">
                             Contact Support
                         </a>
-                        <a href="#" class="inline-flex items-center justify-center bg-transparent text-base border-2 border-base px-10 py-4 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-base hover:text-white transition-all no-underline">
+                        <a href="#" class="inline-flex items-center justify-center bg-transparent text-dark-base border-2 border-dark-base px-10 py-4 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-dark-base hover:text-white transition-all no-underline">
                             Live Chat
                         </a>
                     </div>
@@ -586,7 +584,8 @@
 
         </main>
 
-        <footer class="bg-[#111111] py-12 md:py-16 shrink-0 relative border-t border-white/10">
+        <!-- Footer (Permanently Dark) -->
+        <footer class="bg-dark-base py-12 md:py-16 shrink-0 relative border-t border-dark-border">
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
                     <div class="text-center sm:text-left">

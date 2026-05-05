@@ -18,13 +18,13 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#F6AD55',   // Honey Yellow
-                        secondary: '#E6D3A3', // Warm Sand
-                        base: '#1A1A1A',      // Rich Black
-                        cream: '#FFFFFF',     // Pure White
+                        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+                        base: 'rgb(var(--color-bg-main) / <alpha-value>)',
+                        cream: '#FFFFFF',
                         warmgray: '#9CA3AF',
-                        charcoal: '#1A1A1A',  // Rich Black
-                        'card-dark': '#2A2A2A'// Dark Card
+                        charcoal: '#1A1A1A',
+                        'card-dark': 'rgb(var(--color-card) / <alpha-value>)'
                     },
                     animation: {
                         'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
@@ -36,8 +36,8 @@
                             'to': { opacity: '1', transform: 'translateY(0)' }
                         },
                         pulseBorder: {
-                            '0%': { borderColor: 'rgba(246, 173, 85, 0.2)' },
-                            '100%': { borderColor: 'rgba(246, 173, 85, 0.8)' },
+                            '0%': { borderColor: 'rgb(var(--color-primary) / 0.2)' },
+                            '100%': { borderColor: 'rgb(var(--color-primary) / 0.8)' },
                         }
                     }
                 }
@@ -50,29 +50,31 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
         :root {
-            --primary-color: #F6AD55; 
-            --secondary-color: #E6D3A3; 
-            --bg-color: #FFFFFF; 
-            --bg-alt: #F3F4F6; 
-            --card-bg: #FFFFFF;    
-            --text-main: #1A1A1A; 
-            --text-heading: #1A1A1A; 
-            --navbar-bg: #FFFFFF; 
-            --nav-text: #1A1A1A;
-            --border-color: #E5E7EB; 
+            /* Light Mode - Darker Primary/Secondary for better contrast */
+            --color-primary: 217 119 6;    /* #D97706 - Darker Amber */
+            --color-secondary: 180 83 9;   /* #B45309 - Darker Warm Sand */
+            --color-bg-main: 255 255 255;  /* #FFFFFF */
+            --color-bg-alt: 243 244 246;   /* #F3F4F6 */
+            --color-card: 255 255 255;     /* #FFFFFF */
+            --color-text-main: 26 26 26;   /* #1A1A1A */
+            --color-text-heading: 17 17 17;/* #111111 */
+            --color-navbar-bg: 255 255 255;/* #FFFFFF */
+            --color-nav-text: 26 26 26;    /* #1A1A1A */
+            --color-border: 229 231 235;   /* #E5E7EB */
         }
         
         [data-theme="dark"] {
-            --primary-color: #F6AD55;   
-            --secondary-color: #E6D3A3; 
-            --bg-color: #1A1A1A;        
-            --bg-alt: #222222;          
-            --card-bg: #2A2A2A;         
-            --text-main: #FFFFFF;       
-            --text-heading: #FFFFFF;    
-            --navbar-bg: #1A1A1A;       
-            --nav-text: #FFFFFF;
-            --border-color: #333333;    
+            /* Dark Mode - Vibrant Original Colors */
+            --color-primary: 246 173 85;   /* #F6AD55 - Honey Yellow */
+            --color-secondary: 230 211 163;/* #E6D3A3 - Warm Sand */
+            --color-bg-main: 26 26 26;     /* #1A1A1A */
+            --color-bg-alt: 34 34 34;      /* #222222 */
+            --color-card: 42 42 42;        /* #2A2A2A */
+            --color-text-main: 255 255 255;/* #FFFFFF */
+            --color-text-heading: 255 255 255; /* #FFFFFF */
+            --color-navbar-bg: 26 26 26;   /* #1A1A1A */
+            --color-nav-text: 255 255 255; /* #FFFFFF */
+            --color-border: 51 51 51;      /* #333333 */
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -88,27 +90,27 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: rgb(var(--color-bg-main));
+            color: rgb(var(--color-text-main));
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
-        p, label { color: var(--text-main); }
+        h1, h2, h3, h4, h5, h6 { color: rgb(var(--color-text-heading)); }
+        p, label { color: rgb(var(--color-text-main)); }
         
-        .bg-theme-main { background-color: var(--bg-color); }
-        .bg-theme-alt { background-color: var(--bg-alt); }
-        .bg-card-theme { background-color: var(--card-bg); }
+        .bg-theme-main { background-color: rgb(var(--color-bg-main)); }
+        .bg-theme-alt { background-color: rgb(var(--color-bg-alt)); }
+        .bg-card-theme { background-color: rgb(var(--color-card)); }
         
-        .text-heading-theme { color: var(--text-heading); }
-        .text-body-theme { color: var(--text-main); }
-        .border-theme { border-color: var(--border-color); }
+        .text-heading-theme { color: rgb(var(--color-text-heading)); }
+        .text-body-theme { color: rgb(var(--color-text-main)); }
+        .border-theme { border-color: rgb(var(--color-border)); }
         
         /* Navbar Styles */
         .navbar-container {
-            background-color: var(--navbar-bg);
+            background-color: rgb(var(--color-navbar-bg));
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgb(var(--color-border));
             transition: background-color 0.3s ease, border-color 0.3s ease;
             height: 70px;
             display: flex;
@@ -116,7 +118,7 @@
         }
         
         .nav-link {
-            color: var(--nav-text); 
+            color: rgb(var(--color-nav-text)); 
             padding: 8px 10px; 
             transition: all 0.3s ease;
             position: relative;
@@ -130,16 +132,16 @@
             text-decoration: none;
         }
         
-        .nav-link:hover { color: var(--primary-color); }
-        .nav-link.active { color: var(--primary-color); font-weight: 600; }
+        .nav-link:hover { color: rgb(var(--color-primary)); }
+        .nav-link.active { color: rgb(var(--color-primary)); font-weight: 600; }
         
         .dropdown { position: relative; }
         .dropdown-menu {
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: var(--card-bg); 
-            border: 1px solid var(--border-color);
+            background-color: rgb(var(--color-card)); 
+            border: 1px solid rgb(var(--color-border));
             border-radius: 8px;
             min-width: 160px;
             opacity: 0;
@@ -156,26 +158,26 @@
             opacity: 1; visibility: visible; transform: translateY(0);
         }
         .dropdown-item {
-            display: block; padding: 12px 20px; color: var(--nav-text); 
-            transition: all 0.3s ease; border-bottom: 1px solid var(--border-color); font-size: 0.9rem;
+            display: block; padding: 12px 20px; color: rgb(var(--color-nav-text)); 
+            transition: all 0.3s ease; border-bottom: 1px solid rgb(var(--color-border)); font-size: 0.9rem;
             text-decoration: none;
         }
-        .dropdown-item:hover { background-color: rgba(246, 173, 85, 0.1); color: var(--primary-color); padding-left: 25px; }
+        .dropdown-item:hover { background-color: rgb(var(--color-primary) / 0.1); color: rgb(var(--color-primary)); padding-left: 25px; }
         .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
         .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
         
         .mobile-menu {
             transform: translateX(-100%); transition: transform 0.3s ease;
-            background-color: var(--navbar-bg); color: var(--text-heading); 
+            background-color: rgb(var(--color-navbar-bg)); color: rgb(var(--color-text-heading)); 
         }
         .mobile-menu.active { transform: translateX(0); }
         
         .mobile-dropdown-content {
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
-            padding-left: 20px; background-color: rgba(255,255,255,0.05); border-radius: 8px;
+            padding-left: 20px; background-color: rgb(var(--color-card)); border-radius: 8px;
         }
-        .mobile-dropdown-content a { color: var(--text-main); text-decoration: none;} 
-        .mobile-dropdown-content a:hover { color: var(--primary-color); }
+        .mobile-dropdown-content a { color: rgb(var(--color-text-main)); text-decoration: none;} 
+        .mobile-dropdown-content a:hover { color: rgb(var(--color-primary)); }
         .mobile-dropdown-content.active { max-height: 500px; margin: 5px 0; }
         
         @media (max-width: 1279px) {
@@ -191,7 +193,7 @@
         
         /* Custom Input Styles */
         input:focus, textarea:focus, select:focus {
-            box-shadow: 0 0 0 2px var(--primary-color);
+            box-shadow: 0 0 0 2px rgb(var(--color-primary));
         }
     </style>
 </head>
@@ -313,10 +315,11 @@
 
         <main class="w-full flex-grow">
             
-            <section class="h-[100dvh] w-full pt-[70px] bg-base relative overflow-hidden flex items-center justify-center text-center border-b border-white/10 box-border">
+            <!-- Hero Section (Permanently Dark) -->
+            <section class="h-[100dvh] w-full pt-[70px] bg-[#111111] relative overflow-hidden flex items-center justify-center text-center border-b border-white/10 box-border">
                 <div class="absolute inset-0 z-0">
                     <img src="Images/tree.jpg" alt="Data Network" class="w-full h-full object-cover object-center filter contrast-125 opacity-40">
-                    <div class="absolute inset-0 bg-gradient-to-t from-base via-base/50 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/50 to-transparent"></div>
                 </div>
 
                 <div class="container mx-auto px-4 max-w-4xl relative z-10 py-16 flex flex-col items-center">
@@ -326,17 +329,18 @@
                         <span class="text-primary">Contact.</span>
                     </h1>
                     <p class="animate-fadeInUp text-lg md:text-xl text-gray-400 font-medium leading-relaxed mb-10 max-w-2xl" style="animation-delay: 0.3s;">
-                        Our dispatch team is on standby. Whether it's a subscription issue, a media inquiry, or bulk ordering, patch through below.
+                        Comm-link active. Drop your specs for support, wholesale, or media inquiries below. We deploy fast.
                     </p>
                     
                     <div class="animate-fadeInUp" style="animation-delay: 0.4s;">
-                        <a href="#form" class="inline-flex items-center justify-center bg-primary text-base px-10 py-4 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-white hover:text-primary transition-all shadow-[0_0_20px_rgba(246,173,85,0.4)] no-underline">
+                        <a href="#form" class="inline-flex items-center justify-center bg-primary text-white px-10 py-4 rounded-xl font-black tracking-widest uppercase text-sm hover:bg-white hover:text-primary transition-all shadow-[0_0_20px_rgba(246,173,85,0.4)] no-underline">
                             Open Secure Line
                         </a>
                     </div>
                 </div>
             </section>
 
+            <!-- Support Categories Section -->
             <section class="py-20 bg-theme-main relative z-20">
                 <div class="container mx-auto px-4 max-w-7xl">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -346,7 +350,7 @@
                                 <i class="fas fa-headset"></i>
                             </div>
                             <h3 class="text-xl font-black text-heading-theme mb-2">Member Support</h3>
-                            <p class="text-body-theme text-sm font-medium mb-6">Subscription updates, missing deliveries, and product questions.</p>
+                            <p class="text-body-theme text-sm font-medium mb-6">Manage subscriptions, trace deliveries, resolve issues. Zero friction.</p>
                             <a href="mailto:support@nutribug.com" class="text-primary font-black hover:text-secondary transition-colors no-underline">support@nutribug.com</a>
                         </div>
 
@@ -355,7 +359,7 @@
                                 <i class="fas fa-boxes-stacked"></i>
                             </div>
                             <h3 class="text-xl font-black text-heading-theme mb-2">Wholesale & Sales</h3>
-                            <p class="text-body-theme text-sm font-medium mb-6">Gym distribution, retail stocking,high-volume pricing inquiries.</p>
+                            <p class="text-body-theme text-sm font-medium mb-6">Gym distro, retail stocking, high-volume supply. Fuel your network.</p>
                             <a href="mailto:sales@nutribug.com" class="text-primary font-black hover:text-secondary transition-colors no-underline">sales@nutribug.com</a>
                         </div>
 
@@ -364,7 +368,7 @@
                                 <i class="fas fa-newspaper"></i>
                             </div>
                             <h3 class="text-xl font-black text-heading-theme mb-2">Press & Media</h3>
-                            <p class="text-body-theme text-sm font-medium mb-6">Interviews, brand assets, and influencer partnership applications.</p>
+                            <p class="text-body-theme text-sm font-medium mb-6">Brand assets, media access, vanguard partnerships. Amplify the signal.</p>
                             <a href="mailto:press@nutribug.com" class="text-primary font-black hover:text-secondary transition-colors no-underline">press@nutribug.com</a>
                         </div>
 
@@ -372,33 +376,34 @@
                 </div>
             </section>
 
+            <!-- Form Section -->
             <section id="form" class="py-24 bg-theme-alt relative border-y border-theme overflow-hidden">
                 <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-96 h-96 bg-primary/5 blur-[120px] pointer-events-none"></div>
                 <div class="container mx-auto px-4 max-w-4xl relative z-10">
                     
-                    <div class="bg-[#111111] p-10 md:p-16 rounded-[3rem] shadow-2xl border-2 border-white/10 animate-pulse-border relative overflow-hidden">
+                    <div class="bg-card-theme p-10 md:p-16 rounded-[3rem] shadow-2xl border-2 border-theme animate-pulse-border relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
                         
                         <div class="text-center mb-10">
-                            <h2 class="text-3xl md:text-5xl font-black text-white mb-3">Priority Transmission</h2>
-                            <p class="text-gray-400 font-medium">Fill out the matrix below. Our dispatch will respond within 24 hours.</p>
+                            <h2 class="text-4xl md:text-5xl font-black text-heading-theme mb-3">Priority Transmission</h2>
+                            <p class="text-body-theme font-medium">Fill out the matrix below. Our dispatch will respond within 24 hours.</p>
                         </div>
 
                         <form class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="space-y-2">
-                                    <label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Call Sign (Name)</label>
-                                    <input type="text" class="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 outline-none transition-all font-medium" placeholder="Your Full Name" required>
+                                    <label class="text-xs font-bold text-body-theme uppercase tracking-wider">Call Sign (Name)</label>
+                                    <input type="text" class="w-full bg-theme-main border border-theme rounded-xl px-5 py-4 text-body-theme placeholder-gray-400 outline-none transition-all font-medium" placeholder="Your Full Name" required>
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Comm Link (Email)</label>
-                                    <input type="email" class="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 outline-none transition-all font-medium" placeholder="you@email.com" required>
+                                    <label class="text-xs font-bold text-body-theme uppercase tracking-wider">Comm Link (Email)</label>
+                                    <input type="email" class="w-full bg-theme-main border border-theme rounded-xl px-5 py-4 text-body-theme placeholder-gray-400 outline-none transition-all font-medium" placeholder="you@email.com" required>
                                 </div>
                             </div>
 
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Inquiry Category</label>
-                                <select class="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-5 py-4 text-white outline-none transition-all font-medium appearance-none" required>
+                                <label class="text-xs font-bold text-body-theme uppercase tracking-wider">Inquiry Category</label>
+                                <select class="w-full bg-theme-main border border-theme rounded-xl px-5 py-4 text-body-theme outline-none transition-all font-medium appearance-none" required>
                                     <option value="" disabled selected>Select a topic...</option>
                                     <option value="order">Existing Order / Subscription</option>
                                     <option value="product">Product Question</option>
@@ -408,11 +413,11 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Transmission Payload (Message)</label>
-                                <textarea rows="5" class="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-600 outline-none transition-all font-medium resize-none" placeholder="Provide details here..." required></textarea>
+                                <label class="text-xs font-bold text-body-theme uppercase tracking-wider">Transmission Payload (Message)</label>
+                                <textarea rows="5" class="w-full bg-theme-main border border-theme rounded-xl px-5 py-4 text-body-theme placeholder-gray-400 outline-none transition-all font-medium resize-none" placeholder="Provide details here..." required></textarea>
                             </div>
 
-                            <button type="submit" class="w-full bg-primary text-base py-5 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-white hover:text-primary transition-all shadow-[0_0_20px_rgba(246,173,85,0.2)] mt-4">
+                            <button type="submit" class="w-full bg-primary text-white py-5 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-theme-main hover:text-primary transition-all shadow-[0_0_20px_rgba(246,173,85,0.2)] mt-4 border-2 border-transparent hover:border-primary">
                                 Send Transmission
                             </button>
                         </form>
@@ -421,6 +426,7 @@
                 </div>
             </section>
 
+            <!-- HQ Section -->
             <section class="py-24 bg-theme-main relative">
                 <div class="container mx-auto px-4 max-w-7xl">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -429,7 +435,7 @@
                             <span class="text-primary font-black uppercase tracking-widest text-sm mb-2 block">The Hive</span>
                             <h2 class="text-4xl md:text-5xl font-black text-heading-theme mb-6">Central HQ</h2>
                             <p class="text-body-theme text-lg font-medium leading-relaxed mb-10">
-                                This is where the matrix is engineered, milled, and dispatched. While our vertical farms are closed to the public to maintain bio-security, our corporate and distribution offices are open for partner meetings by appointment only.
+                                The forge where the matrix is engineered. Vertical farms are secured for bio-integrity. Partner access by appointment only. Step into the future.
                             </p>
                             
                             <div class="space-y-8 border-l-2 border-theme pl-6">
@@ -451,7 +457,7 @@
                             <div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
                             
                             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-base text-xl shadow-[0_0_20px_rgba(246,173,85,0.8)] animate-bounce">
+                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl shadow-[0_0_20px_rgba(var(--color-primary),0.8)] animate-bounce">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="bg-card-theme text-heading-theme font-black text-xs uppercase tracking-widest px-4 py-1.5 rounded-full mt-3 shadow-lg border border-theme">
@@ -464,39 +470,41 @@
                 </div>
             </section>
 
-            <section class="py-24 bg-[#111111] relative overflow-hidden border-t border-white/10">
-                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at center, #ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+            <!-- Dispatch Hubs Section -->
+            <section class="py-24 bg-theme-alt relative overflow-hidden border-t border-theme">
+                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at center, rgb(var(--color-border)) 1px, transparent 1px); background-size: 30px 30px;"></div>
                 
                 <div class="container mx-auto px-4 max-w-7xl relative z-10">
                     <div class="text-center mb-16">
-                        <h2 class="text-3xl md:text-4xl font-black text-white mb-4">Global Dispatch Hubs</h2>
-                        <p class="text-gray-400 font-medium">To ensure 48-hour delivery times, our matrix is distributed from three main planetary sectors.</p>
+                        <h2 class="text-4xl md:text-5xl font-black text-heading-theme mb-4">Global Dispatch Hubs</h2>
+                        <p class="text-body-theme font-medium">Distributed across planetary sectors to guarantee 48-hour deployment. No delays. Just fuel.</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                        <div class="p-8 border border-white/10 rounded-3xl bg-[#1A1A1A] flex flex-col items-center justify-center">
+                        <div class="p-8 border border-theme rounded-3xl bg-card-theme flex flex-col items-center justify-center shadow-sm">
                             <div class="flex items-center justify-center text-primary text-3xl mb-4 w-16 h-16 mx-auto"><i class="fas fa-globe-americas"></i></div>
-                            <h3 class="text-xl font-black text-white mb-2">North America</h3>
-                            <p class="text-gray-500 text-sm font-medium">Austin, TX (Primary)<br>Denver, CO (Secondary)</p>
+                            <h3 class="text-xl font-black text-heading-theme mb-2">North America</h3>
+                            <p class="text-body-theme text-sm font-medium opacity-80">Austin, TX (Primary)<br>Denver, CO (Secondary)</p>
                         </div>
-                        <div class="p-8 border border-white/10 rounded-3xl bg-[#1A1A1A] flex flex-col items-center justify-center">
+                        <div class="p-8 border border-theme rounded-3xl bg-card-theme flex flex-col items-center justify-center shadow-sm">
                             <div class="flex items-center justify-center text-primary text-3xl mb-4 w-16 h-16 mx-auto"><i class="fas fa-globe-europe"></i></div>
-                            <h3 class="text-xl font-black text-white mb-2">Europe</h3>
-                            <p class="text-gray-500 text-sm font-medium">Berlin, DE<br>London, UK</p>
+                            <h3 class="text-xl font-black text-heading-theme mb-2">Europe</h3>
+                            <p class="text-body-theme text-sm font-medium opacity-80">Berlin, DE<br>London, UK</p>
                         </div>
-                        <div class="p-8 border border-white/10 rounded-3xl bg-[#1A1A1A] flex flex-col items-center justify-center">
+                        <div class="p-8 border border-theme rounded-3xl bg-card-theme flex flex-col items-center justify-center shadow-sm">
                             <div class="flex items-center justify-center text-primary text-3xl mb-4 w-16 h-16 mx-auto"><i class="fas fa-globe-asia"></i></div>
-                            <h3 class="text-xl font-black text-white mb-2">Asia-Pacific</h3>
-                            <p class="text-gray-500 text-sm font-medium">Coming Q4 2026<br>Sydney, AU</p>
+                            <h3 class="text-xl font-black text-heading-theme mb-2">Asia-Pacific</h3>
+                            <p class="text-body-theme text-sm font-medium opacity-80">Coming Q4 2026<br>Sydney, AU</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="py-24 bg-theme-alt relative border-t border-theme">
+            <!-- Social/Grid Section -->
+            <section class="py-24 bg-theme-main relative border-t border-theme">
                 <div class="container mx-auto px-4 max-w-5xl text-center">
-                    <h2 class="text-3xl md:text-5xl font-black text-heading-theme mb-6">Join The Grid</h2>
-                    <p class="text-body-theme text-lg font-medium mb-12">Tap into our network. Tag us in your training logs using <strong class="text-primary">#NutriBugMatrix</strong> to be featured on our vanguard wall.</p>
+                    <h2 class="text-4xl md:text-5xl font-black text-heading-theme mb-6">Join The Grid</h2>
+                    <p class="text-body-theme text-lg font-medium mb-12">Plug into the network. Log your training with <strong class="text-primary">#NutriBugMatrix</strong>. Claim your spot on the vanguard wall.</p>
 
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <a href="#" class="bg-card-theme border border-theme p-10 rounded-3xl flex flex-col items-center justify-center gap-4 hover:bg-[#E1306C] hover:text-white hover:border-[#E1306C] transition-all duration-300 group no-underline text-heading-theme shadow-sm">
@@ -521,6 +529,7 @@
 
         </main>
 
+        <!-- Footer (Permanently Dark) -->
         <footer class="bg-[#111111] py-12 md:py-16 shrink-0 relative border-t border-white/10">
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
@@ -567,7 +576,7 @@
                         <p class="text-gray-400 mb-6 text-base font-medium leading-relaxed">Subscribe for recipe updates, fitness tips, and exclusive drops.</p>
                         <form class="flex flex-col gap-3">
                             <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary font-medium shadow-sm text-center sm:text-left" required>
-                            <button type="submit" class="w-full bg-primary text-white px-4 py-3 rounded-lg font-bold hover:bg-white hover:text-primary transition shadow-sm">
+                            <button type="submit" class="w-full bg-primary text-white px-4 py-3 rounded-lg font-bold hover:bg-white hover:text-primary transition shadow-sm border-2 border-transparent hover:border-primary">
                                 Subscribe
                             </button>
                         </form>
@@ -585,7 +594,7 @@
         </footer>
     </div>
 
-    <button id="scroll-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-primary text-white rounded-full shadow-lg hidden hover:bg-white hover:text-primary transition z-50 border-2 border-transparent hover:border-primary">
+    <button id="scroll-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-primary text-white rounded-full shadow-lg hidden hover:bg-theme-main hover:text-primary transition z-50 border-2 border-transparent hover:border-primary">
         <i class="fas fa-arrow-up"></i>
     </button>
 

@@ -2,13 +2,14 @@
 <html lang="en" data-theme="dark" dir="ltr" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Register | NutriBug</title>
     <meta name="description" content="Create an account on NutriBug - Premium Insect-Based Protein Platform">
-     <link rel="icon" href="Images\WhatsApp Image 2026-04-21 at 11.25.12.jpeg" type="image/jpeg">
+    
+    <link rel="icon" href="Images\Growwpark Favicon.jpg" type="image/jpeg">
+
     <script src="tailwind.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -19,13 +20,20 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#F6AD55',   // Honey Yellow
-                        secondary: '#E6D3A3', // Warm Sand
-                        base: '#1A1A1A',      // Rich Black
-                        cream: '#FFFFFF',     // Pure White
-                        warmgray: '#9CA3AF',
-                        charcoal: '#1A1A1A',  // Rich Black
-                        'card-dark': '#2A2A2A'// Dark Card
+                        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+                        'theme-main': 'rgb(var(--color-bg-main) / <alpha-value>)',
+                        'theme-alt': 'rgb(var(--color-bg-alt) / <alpha-value>)',
+                        'card-theme': 'rgb(var(--color-card) / <alpha-value>)',
+                        'text-main': 'rgb(var(--color-text-main) / <alpha-value>)',
+                        'text-heading': 'rgb(var(--color-text-heading) / <alpha-value>)',
+                        'border-theme': 'rgb(var(--color-border) / <alpha-value>)',
+                        'navbar-bg': 'rgb(var(--color-navbar) / <alpha-value>)',
+                        
+                        /* Permanent Dark Theme Colors */
+                        'dark-base': '#121212',
+                        'dark-surface': '#1A1A1A',
+                        'dark-border': '#333333',
                     },
                     animation: {
                         'fadeInUp': 'fadeInUp 0.4s ease-out',
@@ -44,73 +52,98 @@
     <style type="text/tailwindcss">
         @layer components {
             .form-input {
-                @apply w-full pl-9 pr-9 py-1.5 border bg-transparent rounded-xl focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none text-sm font-medium;
+                @apply w-full pl-9 pr-9 py-2 border bg-transparent rounded-xl focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none text-sm font-medium;
+            }
+            .social-btn {
+                @apply flex-1 flex items-center justify-center py-2 border rounded-xl transition-colors duration-300 shadow-sm;
             }
             .input-icon {
                 @apply absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm;
             }
             .form-label {
-                @apply block text-[var(--text-heading)] font-bold mb-0.5 text-[10px] md:text-xs uppercase tracking-wider;
+                @apply block text-text-heading font-bold mb-1 text-[10px] md:text-xs uppercase tracking-wider;
             }
         }
     </style>
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
         :root {
-            --primary-color: #F6AD55; 
-            --secondary-color: #E6D3A3; 
-            --bg-color: #FFFFFF; 
-            --bg-alt: #F3F4F6; 
-            --card-bg: #FFFFFF;    
-            --text-main: #1A1A1A; 
-            --text-heading: #1A1A1A; 
-            --navbar-bg: #FFFFFF;
-            --border-color: #E5E7EB;
-            --input-border: #D1D5DB;
+            /* Light Mode Variables - Darker for higher contrast */
+            --color-primary: 217 119 6;    /* Dark Amber */
+            --color-secondary: 180 83 9;   /* Darker Warm Tone */
+            --color-bg-main: 255 255 255;  /* Pure White */
+            --color-bg-alt: 243 244 246;   /* Light Gray */
+            --color-card: 255 255 255;     /* Pure White */
+            --color-text-main: 26 26 26;   /* Near Black */
+            --color-text-heading: 17 17 17;/* True Black */
+            --color-navbar: 255 255 255;   /* Pure White */
+            --color-border: 229 231 235;   /* Gray 200 */
         }
         
         [data-theme="dark"] {
-            --primary-color: #F6AD55;   
-            --secondary-color: #E6D3A3; 
-            --bg-color: #1A1A1A;        
-            --bg-alt: #222222;          
-            --card-bg: #2A2A2A;         
-            --text-main: #FFFFFF;       
-            --text-heading: #FFFFFF;    
-            --navbar-bg: #1A1A1A;
-            --border-color: #333333;    
-            --input-border: #444444;
+            /* Dark Mode Variables - Strictly Black/Dark Grey */
+            --color-primary: 246 173 85;   /* Honey Yellow */
+            --color-secondary: 230 211 163;/* Warm Sand */
+            --color-bg-main: 18 18 18;     /* Dark Grey / Black */
+            --color-bg-alt: 26 26 26;      /* Rich Black */
+            --color-card: 34 34 34;        /* Dark Card */
+            --color-text-main: 229 231 235;/* Light Gray */
+            --color-text-heading: 255 255 255; /* White */
+            --color-navbar: 18 18 18;      /* Dark Grey / Black */
+            --color-border: 51 51 51;      /* Dark Border */
         }
 
         html, body {
             margin: 0;
             padding: 0;
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: rgb(var(--color-bg-main));
+            color: rgb(var(--color-text-main));
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .form-input {
-            border-color: var(--input-border);
-            color: var(--text-main);
+            border-color: rgb(var(--color-border));
+            color: rgb(var(--color-text-main));
         }
         .form-input::placeholder {
-            color: var(--warmgray);
-            opacity: 0.6;
+            color: rgb(var(--color-text-main));
+            opacity: 0.5;
         }
 
-        /* Nav styling to match home page exactly */
+        .social-btn {
+            border-color: rgb(var(--color-border));
+            background-color: rgb(var(--color-card));
+            color: rgb(var(--color-text-heading));
+        }
+        .social-btn:hover {
+            border-color: rgb(var(--color-primary));
+        }
+
         .navbar-container {
-            background-color: var(--navbar-bg);
+            background-color: rgb(var(--color-navbar));
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgb(var(--color-border));
             transition: background-color 0.3s ease, border-color 0.3s ease;
             height: 70px;
         }
+
+        /* Custom Scrollbar for the form */
+        .form-scroller::-webkit-scrollbar {
+            width: 4px;
+        }
+        .form-scroller::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .form-scroller::-webkit-scrollbar-thumb {
+            background-color: rgb(var(--color-primary) / 0.5);
+            border-radius: 10px;
+        }
     </style>
 </head>
-<body class="w-full h-screen overflow-hidden m-0 p-0 antialiased relative flex flex-col">
+<body class="w-full h-[100dvh] overflow-hidden m-0 p-0 antialiased relative flex flex-col bg-theme-main text-text-main">
 
     <nav class="navbar-container absolute top-0 left-0 w-full px-4 md:px-8 flex justify-between items-center z-50">
         <a href="index.html" class="flex items-center gap-3 no-underline transition-transform duration-300 hover:scale-105 group">
@@ -118,40 +151,55 @@
                 <i class="fas fa-bug text-white text-lg"></i>
             </div>
             <div>
-                <div class="text-xl md:text-2xl font-black text-[var(--text-heading)] tracking-tight leading-none">Nutri<span class="text-primary">Bug</span></div>
+                <div class="text-xl md:text-2xl font-black text-text-heading tracking-tight leading-none">Nutri<span class="text-primary">Bug</span></div>
             </div>
         </a>
 
         <div class="flex items-center gap-2 md:gap-3 shrink-0">
-            <button id="themeToggle" class="w-10 h-10 bg-[var(--bg-alt)] text-[var(--text-heading)] border border-[var(--border-color)] rounded-xl flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shadow-sm cursor-pointer" title="Toggle Dark Mode">
+            <button id="mobile-menu-btn" class="text-text-heading cursor-pointer bg-transparent border-0 items-center justify-center h-10 w-10 relative hover:text-primary transition-colors flex lg:hidden">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            
+            <button id="themeToggle" class="w-10 h-10 bg-theme-alt text-text-heading border border-border-theme rounded-xl flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shadow-sm cursor-pointer" title="Toggle Dark Mode">
                 <i class="fas fa-moon text-sm" id="themeIcon"></i>
             </button>
-            <button id="rtlToggle" class="w-10 h-10 bg-[var(--bg-alt)] text-[var(--text-heading)] border border-[var(--border-color)] rounded-xl flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shadow-sm cursor-pointer" title="Toggle RTL">
+            <button id="rtlToggle" class="w-10 h-10 bg-theme-alt text-text-heading border border-border-theme rounded-xl flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shadow-sm cursor-pointer" title="Toggle RTL">
                 <i class="fas fa-exchange-alt text-sm"></i>
             </button>
         </div>
     </nav>
 
-    <section class="flex-1 flex flex-col items-center justify-center w-full px-4 pt-[70px] relative">
+    <!-- Main Section restricted exactly to viewport -->
+    <section class="flex-1 flex flex-col items-center justify-center w-full px-4 pt-[70px] pb-4 relative h-[100dvh] overflow-hidden">
         
         <div class="absolute top-1/4 left-0 w-80 h-80 bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="absolute bottom-0 right-0 w-80 h-80 bg-primary/20 dark:bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-        <div class="w-full max-w-[380px] bg-[var(--card-bg)] rounded-3xl shadow-2xl border border-[var(--border-color)] animate-fadeInUp p-5 md:p-6 relative z-10 flex flex-col">
+        <!-- Card Container strictly contained within viewport limits -->
+        <div class="w-full max-w-[420px] max-h-[calc(100dvh-100px)] bg-card-theme rounded-3xl shadow-2xl border border-border-theme animate-fadeInUp p-6 relative z-10 flex flex-col">
             
             <div class="mb-4 text-center shrink-0">
-                <h1 class="text-xl md:text-2xl font-black text-[var(--text-heading)] mb-0.5">Create Account</h1>
-                <p class="text-[var(--text-main)] opacity-80 text-[11px] font-medium">Join the NutriBug Matrix</p>
+                <h2 class="text-3xl md:text-4xl font-black text-text-heading mb-1 tracking-tight">Create Account</h2>
+                <p class="text-text-main opacity-80 text-xs font-medium">Join the vanguard of sustainable performance.</p>
             </div>
 
-            <div id="signupForm" class="flex-1 flex flex-col justify-between">
-                <form id="signupFormElement" class="space-y-6 shrink-0">
+            <!-- Scrollable Internal Form Container -->
+            <div id="signupForm" class="flex-1 flex flex-col justify-start overflow-y-auto pr-2 -mr-2 form-scroller">
+                <form id="signupFormElement" class="space-y-4 shrink-0">
                     
                     <div>
                         <label class="form-label" for="firstName">First Name</label>
                         <div class="relative">
                             <i class="fas fa-user input-icon"></i>
-                            <input type="text" placeholder="Alex" required class="form-input" id="firstName" autocomplete="given-name">
+                            <input type="text" placeholder="Enter first name" required class="form-input" id="firstName" autocomplete="given-name">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label" for="mobileNumber">Mobile Number</label>
+                        <div class="relative">
+                            <i class="fas fa-phone input-icon"></i>
+                            <input type="tel" placeholder="Enter mobile number" required class="form-input" id="mobileNumber" autocomplete="tel">
                         </div>
                     </div>
 
@@ -159,8 +207,8 @@
                         <label class="form-label" for="signupPassword">Password</label>
                         <div class="relative">
                             <i class="fas fa-lock input-icon"></i>
-                            <input type="password" id="signupPassword" placeholder="Create a strong password" required class="form-input" autocomplete="new-password">
-                            <button type="button" onclick="togglePasswordVisibility('signupPassword', 'signupEyeIcon')" class="absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 hover:text-[var(--text-heading)] focus:outline-none cursor-pointer bg-transparent border-0 p-0 transition-colors">
+                            <input type="password" id="signupPassword" placeholder="Create strong password" required class="form-input" autocomplete="new-password">
+                            <button type="button" onclick="togglePasswordVisibility('signupPassword', 'signupEyeIcon')" class="absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 hover:text-text-heading focus:outline-none cursor-pointer bg-transparent border-0 p-0 transition-colors">
                                 <i class="fas fa-eye text-sm" id="signupEyeIcon"></i>
                             </button>
                         </div>
@@ -170,30 +218,30 @@
                         <label class="form-label" for="signupConfirmPassword">Confirm Password</label>
                         <div class="relative">
                             <i class="fas fa-lock input-icon"></i>
-                            <input type="password" id="signupConfirmPassword" placeholder="Repeat your password" required class="form-input" autocomplete="new-password">
-                            <button type="button" onclick="togglePasswordVisibility('signupConfirmPassword', 'signupConfirmEyeIcon')" class="absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 hover:text-[var(--text-heading)] focus:outline-none cursor-pointer bg-transparent border-0 p-0 transition-colors">
+                            <input type="password" id="signupConfirmPassword" placeholder="Repeat password" required class="form-input" autocomplete="new-password">
+                            <button type="button" onclick="togglePasswordVisibility('signupConfirmPassword', 'signupConfirmEyeIcon')" class="absolute top-1/2 -translate-y-1/2 right-3 text-gray-400 hover:text-text-heading focus:outline-none cursor-pointer bg-transparent border-0 p-0 transition-colors">
                                 <i class="fas fa-eye text-sm" id="signupConfirmEyeIcon"></i>
                             </button>
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-2 pt-1 pb-1">
+                    <div class="flex items-start gap-2 pt-2 pb-1">
                         <div class="flex items-center h-4 mt-0.5">
-                            <input id="terms" type="checkbox" required class="w-3.5 h-3.5 text-primary rounded border-[var(--border-color)] focus:ring-primary bg-transparent cursor-pointer">
+                            <input id="terms" type="checkbox" required class="w-3.5 h-3.5 text-primary rounded border-border-theme focus:ring-primary bg-transparent cursor-pointer">
                         </div>
-                        <label for="terms" class="text-[var(--text-main)] text-[10px] font-medium leading-tight cursor-pointer">
+                        <label for="terms" class="text-text-main text-[11px] font-medium leading-tight cursor-pointer">
                             I agree to the <a href="terms.html" class="text-primary font-bold hover:underline">Terms</a> and <a href="privacy.html" class="text-primary font-bold hover:underline">Privacy Policy</a>.
                         </label>
                     </div>
 
-                    <button type="submit" class="w-full bg-secondary text-white hover:bg-primary hover:text-base hover:border-primary py-2 rounded-xl font-black text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 border border-transparent cursor-pointer" id="signupButton">
-                        Create Account
+                    <button type="submit" class="w-full bg-secondary text-white hover:bg-primary hover:text-white hover:border-primary py-3 rounded-xl font-black text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 border border-transparent cursor-pointer" id="signupButton">
+                        Initialize Matrix
                     </button>
                 </form>
 
-                <div class="mt-6 shrink-0 pt-3 border-t border-[var(--border-color)]">
-                    <p class="text-center text-xs text-[var(--text-main)] font-medium">
-                        Already have an account? 
+                <div class="mt-5 shrink-0 pt-4 border-t border-border-theme pb-2">
+                    <p class="text-center text-xs text-text-main font-medium">
+                        Already in the system? 
                         <a href="login.html" class="text-primary font-bold hover:underline ml-1">Log In</a>
                     </p>
                 </div>
@@ -266,7 +314,7 @@
             }
 
             const btn = document.getElementById('signupButton');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Creating...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Initializing...';
             
             setTimeout(() => {
                 window.location.href = 'index.html';
